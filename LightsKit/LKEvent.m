@@ -74,6 +74,9 @@
         eventDict[LKX10DeviceIDKey] = @(self.device.deviceID);
         eventDict[LKX10HouseCodeKey] = @(self.device.houseCode);
         eventDict[LKX10CommandKey] = @(self.command);
+    } else {
+        eventDict[LKSpeedKey] = @(self.speed);
+        eventDict[LKBrightnessKey] = @(self.brightness);
     }
     
     return [self jsonStringWithDictionary:eventDict];

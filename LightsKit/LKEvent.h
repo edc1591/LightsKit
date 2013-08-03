@@ -16,6 +16,8 @@ static NSString * const LKX10HouseCodeKey = @"houseCode";
 static NSString * const LKX10DeviceIDKey = @"device";
 static NSString * const LKX10DeviceNameKey = @"name";
 static NSString * const LKX10DeviceTypeKey = @"type";
+static NSString * const LKSpeedKey = @"speed";
+static NSString * const LKBrightnessKey = @"brightness";
 
 typedef NS_ENUM(NSUInteger, LKEventType) {
     LKEventTypeQuery = 0,
