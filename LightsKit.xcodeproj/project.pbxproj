@@ -7,12 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20506C2717AD88B60039CC8A /* LKEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 20506C2517AD88B60039CC8A /* LKEvent.h */; };
+		20506C2817AD88B60039CC8A /* LKEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 20506C2617AD88B60039CC8A /* LKEvent.m */; };
+		20506C2B17AD8AE40039CC8A /* LKColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 20506C2917AD8AE40039CC8A /* LKColor.h */; };
+		20506C2C17AD8AE40039CC8A /* LKColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 20506C2A17AD8AE40039CC8A /* LKColor.m */; };
 		2095ABA617ACAF0D0056976A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2095ABA517ACAF0D0056976A /* Cocoa.framework */; };
 		2095ABB017ACAF0D0056976A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2095ABAE17ACAF0D0056976A /* InfoPlist.strings */; };
-		2095ABB417ACAF0D0056976A /* LightsKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2095ABB317ACAF0D0056976A /* LightsKit.m */; };
+		2095ABBC17ACAFB60056976A /* LKSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 2095ABBA17ACAFB60056976A /* LKSession.h */; };
+		2095ABBD17ACAFB60056976A /* LKSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 2095ABBB17ACAFB60056976A /* LKSession.m */; };
+		2095ABC017ACB2580056976A /* LKX10Device.h in Headers */ = {isa = PBXBuildFile; fileRef = 2095ABBE17ACB2580056976A /* LKX10Device.h */; };
+		2095ABC117ACB2580056976A /* LKX10Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 2095ABBF17ACB2580056976A /* LKX10Device.m */; };
+		2095ABC317ACB4D00056976A /* LightsKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 2095ABC217ACB4D00056976A /* LightsKit.h */; };
+		DBA84396D1F14649ACB01EED /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7EDDA276EB4EC9BD77296A /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		20506C2517AD88B60039CC8A /* LKEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKEvent.h; sourceTree = "<group>"; };
+		20506C2617AD88B60039CC8A /* LKEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKEvent.m; sourceTree = "<group>"; };
+		20506C2917AD8AE40039CC8A /* LKColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKColor.h; sourceTree = "<group>"; };
+		20506C2A17AD8AE40039CC8A /* LKColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKColor.m; sourceTree = "<group>"; };
 		2095ABA217ACAF0D0056976A /* LightsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LightsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2095ABA517ACAF0D0056976A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		2095ABA817ACAF0D0056976A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -21,8 +34,13 @@
 		2095ABAD17ACAF0D0056976A /* LightsKit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LightsKit-Info.plist"; sourceTree = "<group>"; };
 		2095ABAF17ACAF0D0056976A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2095ABB117ACAF0D0056976A /* LightsKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LightsKit-Prefix.pch"; sourceTree = "<group>"; };
-		2095ABB217ACAF0D0056976A /* LightsKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LightsKit.h; sourceTree = "<group>"; };
-		2095ABB317ACAF0D0056976A /* LightsKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LightsKit.m; sourceTree = "<group>"; };
+		2095ABBA17ACAFB60056976A /* LKSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKSession.h; sourceTree = "<group>"; };
+		2095ABBB17ACAFB60056976A /* LKSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKSession.m; sourceTree = "<group>"; };
+		2095ABBE17ACB2580056976A /* LKX10Device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKX10Device.h; sourceTree = "<group>"; };
+		2095ABBF17ACB2580056976A /* LKX10Device.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKX10Device.m; sourceTree = "<group>"; };
+		2095ABC217ACB4D00056976A /* LightsKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightsKit.h; sourceTree = "<group>"; };
+		81E48CFC152046919D577328 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		8E7EDDA276EB4EC9BD77296A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +49,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2095ABA617ACAF0D0056976A /* Cocoa.framework in Frameworks */,
+				DBA84396D1F14649ACB01EED /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +62,7 @@
 				2095ABAB17ACAF0D0056976A /* LightsKit */,
 				2095ABA417ACAF0D0056976A /* Frameworks */,
 				2095ABA317ACAF0D0056976A /* Products */,
+				81E48CFC152046919D577328 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,6 +79,7 @@
 			children = (
 				2095ABA517ACAF0D0056976A /* Cocoa.framework */,
 				2095ABA717ACAF0D0056976A /* Other Frameworks */,
+				8E7EDDA276EB4EC9BD77296A /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -76,8 +97,15 @@
 		2095ABAB17ACAF0D0056976A /* LightsKit */ = {
 			isa = PBXGroup;
 			children = (
-				2095ABB217ACAF0D0056976A /* LightsKit.h */,
-				2095ABB317ACAF0D0056976A /* LightsKit.m */,
+				2095ABBA17ACAFB60056976A /* LKSession.h */,
+				2095ABBB17ACAFB60056976A /* LKSession.m */,
+				20506C2517AD88B60039CC8A /* LKEvent.h */,
+				20506C2617AD88B60039CC8A /* LKEvent.m */,
+				20506C2917AD8AE40039CC8A /* LKColor.h */,
+				20506C2A17AD8AE40039CC8A /* LKColor.m */,
+				2095ABBE17ACB2580056976A /* LKX10Device.h */,
+				2095ABBF17ACB2580056976A /* LKX10Device.m */,
+				2095ABC217ACB4D00056976A /* LightsKit.h */,
 				2095ABAC17ACAF0D0056976A /* Supporting Files */,
 			);
 			path = LightsKit;
@@ -100,6 +128,11 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2095ABBC17ACAFB60056976A /* LKSession.h in Headers */,
+				2095ABC017ACB2580056976A /* LKX10Device.h in Headers */,
+				2095ABC317ACB4D00056976A /* LightsKit.h in Headers */,
+				20506C2717AD88B60039CC8A /* LKEvent.h in Headers */,
+				20506C2B17AD8AE40039CC8A /* LKColor.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,10 +143,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2095ABB717ACAF0D0056976A /* Build configuration list for PBXNativeTarget "LightsKit" */;
 			buildPhases = (
+				107A5D36AC954CEDA11600E9 /* Check Pods Manifest.lock */,
 				2095AB9D17ACAF0D0056976A /* Sources */,
 				2095AB9E17ACAF0D0056976A /* Frameworks */,
 				2095AB9F17ACAF0D0056976A /* Headers */,
 				2095ABA017ACAF0D0056976A /* Resources */,
+				1081CE3181394E009BB1B491 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -161,12 +196,46 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		107A5D36AC954CEDA11600E9 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+		};
+		1081CE3181394E009BB1B491 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2095AB9D17ACAF0D0056976A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2095ABB417ACAF0D0056976A /* LightsKit.m in Sources */,
+				2095ABBD17ACAFB60056976A /* LKSession.m in Sources */,
+				2095ABC117ACB2580056976A /* LKX10Device.m in Sources */,
+				20506C2817AD88B60039CC8A /* LKEvent.m in Sources */,
+				20506C2C17AD8AE40039CC8A /* LKColor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +314,7 @@
 		};
 		2095ABB817ACAF0D0056976A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81E48CFC152046919D577328 /* Pods.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -260,6 +330,7 @@
 		};
 		2095ABB917ACAF0D0056976A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81E48CFC152046919D577328 /* Pods.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -292,6 +363,7 @@
 				2095ABB917ACAF0D0056976A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
