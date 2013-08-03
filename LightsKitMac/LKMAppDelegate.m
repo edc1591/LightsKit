@@ -27,8 +27,23 @@
 }
 
 - (IBAction)getState:(id)sender {
-    [self.session queryStateWithBlock:^(LKEvent *event) {
+    [self.session queryStateWithBlock:^(LKResponse *response) {
+        LKEvent *event = response.event;
         self.colorWell.color = [NSColor colorWithCalibratedRed:event.color.red green:event.color.green blue:event.color.blue alpha:1];
+    }];
+}
+
+- (IBAction)setColor:(id)sender {
+    CGFloat red;
+    CGFloat green;
+    CGFloat blue;
+    [self.colorWell.color getRed:&red green:&green blue:&blue alpha:NULL];
+    [self.session sendEvent:[LKEvent colorEventWithColor:[LKColor colorWithRGB:@[@(red*255), @(green*255), @(blue*255)]]]];
+}
+
+- (IBAction)getDevices:(id)sender {
+    [self.session queryX10DevicesWithBlock:^(LKResponse *response) {
+        NSLog(@"%@", response.objects);
     }];
 }
 

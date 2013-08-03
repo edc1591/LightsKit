@@ -28,4 +28,8 @@
     return device;
 }
 
+- (NSString *)description {
+    return self.name;
+}
+
 @end

@@ -10,9 +10,10 @@
 
 @interface LKColor : NSObject
 
-@property (nonatomic) CGFloat red;
-@property (nonatomic) CGFloat green;
-@property (nonatomic) CGFloat blue;
+@property (nonatomic, readonly) NSInteger red;
+@property (nonatomic, readonly) NSInteger green;
+@property (nonatomic, readonly) NSInteger blue;
+@property (nonatomic, readonly) NSArray *rgb;
 
 + (instancetype)colorWithRGB:(NSArray *)rgb;
 

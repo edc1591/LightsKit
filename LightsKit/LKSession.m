@@ -9,6 +9,7 @@
 #import "LKSession.h"
 #import "LKEvent.h"
 #import "LKColor.h"
+#import "LKResponse.h"
 #import <SocketRocket/SRWebSocket.h>
 
 @interface LKSession () <SRWebSocketDelegate>
@@ -16,7 +17,8 @@
 @property (nonatomic) SRWebSocket *socket;
 
 @property (nonatomic, copy) void (^socketDidOpenBlock)();
-@property (nonatomic, copy) void (^didReceiveStateBlock)();
+@property (nonatomic, copy) void (^didReceiveStateBlock)(LKResponse *response);
+@property (nonatomic, copy) void (^didReceiveDevicesBlock)(LKResponse *response);
 
 @end
 
@@ -52,9 +54,15 @@
 
 #pragma mark - Convenience methods
 
-- (void)queryStateWithBlock:(void (^)(LKEvent *))block {
+- (void)queryStateWithBlock:(void (^)(LKResponse *response))block {
     self.didReceiveStateBlock = block;
     LKEvent *event = [LKEvent eventWithType:LKEventTypeQuery];
+    [self sendEvent:event];
+}
+
+- (void)queryX10DevicesWithBlock:(void (^)(LKResponse *response))block {
+    self.didReceiveDevicesBlock = block;
+    LKEvent *event = [LKEvent eventWithType:LKEventTypeGetX10Devices];
     [self sendEvent:event];
 }
 
@@ -75,12 +83,19 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         if([message hasPrefix:@"currentState"]) {
             NSString *command  = [message stringByReplacingOccurrencesOfString:@"currentState: " withString:@""];
-            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:[command dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
-            LKEvent *event = [LKEvent colorEventWithColor:[LKColor colorWithRGB:dict[LKColorKey]]];
+            LKResponse *response = [LKResponse responseWithBodyString:command];
             if (self.didReceiveStateBlock) {
-                self.didReceiveStateBlock(event);
+                self.didReceiveStateBlock(response);
             }
             self.didReceiveStateBlock = nil;
+        } else {
+            LKResponse *response = [LKResponse responseWithBodyString:message];
+            if(response.event.type == LKEventTypeGetX10Devices) {
+                if (self.didReceiveDevicesBlock) {
+                    self.didReceiveDevicesBlock(response);
+                }
+                self.didReceiveDevicesBlock = nil;
+            }
         }
     });
 }

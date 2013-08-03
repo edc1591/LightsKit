@@ -18,6 +18,8 @@
 		20506C5817AD9E3F0039CC8A /* LKMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 20506C5717AD9E3F0039CC8A /* LKMAppDelegate.m */; };
 		20506C5B17AD9E3F0039CC8A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20506C5917AD9E3F0039CC8A /* MainMenu.xib */; };
 		20506C6117AD9F520039CC8A /* LightsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2095ABA217ACAF0D0056976A /* LightsKit.framework */; };
+		20506C6417ADA4F10039CC8A /* LKResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 20506C6217ADA4F10039CC8A /* LKResponse.h */; };
+		20506C6517ADA4F10039CC8A /* LKResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 20506C6317ADA4F10039CC8A /* LKResponse.m */; };
 		2095ABA617ACAF0D0056976A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2095ABA517ACAF0D0056976A /* Cocoa.framework */; };
 		2095ABB017ACAF0D0056976A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2095ABAE17ACAF0D0056976A /* InfoPlist.strings */; };
 		2095ABBC17ACAFB60056976A /* LKSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 2095ABBA17ACAFB60056976A /* LKSession.h */; };
@@ -53,6 +55,8 @@
 		20506C5617AD9E3F0039CC8A /* LKMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LKMAppDelegate.h; sourceTree = "<group>"; };
 		20506C5717AD9E3F0039CC8A /* LKMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LKMAppDelegate.m; sourceTree = "<group>"; };
 		20506C5A17AD9E3F0039CC8A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		20506C6217ADA4F10039CC8A /* LKResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKResponse.h; sourceTree = "<group>"; };
+		20506C6317ADA4F10039CC8A /* LKResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKResponse.m; sourceTree = "<group>"; };
 		2095ABA217ACAF0D0056976A /* LightsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LightsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2095ABA517ACAF0D0056976A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		2095ABA817ACAF0D0056976A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -163,6 +167,8 @@
 				2095ABBB17ACAFB60056976A /* LKSession.m */,
 				20506C2517AD88B60039CC8A /* LKEvent.h */,
 				20506C2617AD88B60039CC8A /* LKEvent.m */,
+				20506C6217ADA4F10039CC8A /* LKResponse.h */,
+				20506C6317ADA4F10039CC8A /* LKResponse.m */,
 				20506C2917AD8AE40039CC8A /* LKColor.h */,
 				20506C2A17AD8AE40039CC8A /* LKColor.m */,
 				2095ABBE17ACB2580056976A /* LKX10Device.h */,
@@ -195,6 +201,7 @@
 				2095ABC317ACB4D00056976A /* LightsKit.h in Headers */,
 				20506C2717AD88B60039CC8A /* LKEvent.h in Headers */,
 				20506C2B17AD8AE40039CC8A /* LKColor.h in Headers */,
+				20506C6417ADA4F10039CC8A /* LKResponse.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +343,7 @@
 				2095ABC117ACB2580056976A /* LKX10Device.m in Sources */,
 				20506C2817AD88B60039CC8A /* LKEvent.m in Sources */,
 				20506C2C17AD8AE40039CC8A /* LKColor.m in Sources */,
+				20506C6517ADA4F10039CC8A /* LKResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

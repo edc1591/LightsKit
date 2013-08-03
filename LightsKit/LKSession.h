@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class LKEvent;
+@class LKEvent, LKResponse;
 
 @interface LKSession : NSObject
 
@@ -20,6 +20,7 @@
 
 - (void)sendEvent:(LKEvent *)event;
 
-- (void)queryStateWithBlock:(void (^)(LKEvent *event))block;
+- (void)queryStateWithBlock:(void (^)(LKResponse *response))block;
+- (void)queryX10DevicesWithBlock:(void (^)(LKResponse *response))block;
 
 @end

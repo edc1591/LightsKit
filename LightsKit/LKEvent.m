@@ -7,6 +7,8 @@
 //
 
 #import "LKEvent.h"
+#import "LKColor.h"
+#import "LKX10Device.h"
 
 @interface LKEvent ()
 
@@ -65,6 +67,14 @@
 - (NSString *)bodyString {
     NSMutableDictionary *eventDict = [NSMutableDictionary dictionary];
     eventDict[LKEventTypeKey] = @(self.type);
+    
+    if (self.type == LKEventTypeSolid) {
+        eventDict[LKColorKey] = self.color.rgb;
+    } else if (self.type == LKEventTypeX10Command) {
+        eventDict[LKX10DeviceIDKey] = @(self.device.deviceID);
+        eventDict[LKX10HouseCodeKey] = @(self.device.houseCode);
+        eventDict[LKX10CommandKey] = @(self.command);
+    }
     
     return [self jsonStringWithDictionary:eventDict];
 }
