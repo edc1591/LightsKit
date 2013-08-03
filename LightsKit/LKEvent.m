@@ -60,4 +60,21 @@
     return event;
 }
 
+#pragma mark - Public methods
+
+- (NSString *)bodyString {
+    NSMutableDictionary *eventDict = [NSMutableDictionary dictionary];
+    eventDict[LKEventTypeKey] = @(self.type);
+    
+    return [self jsonStringWithDictionary:eventDict];
+}
+
+#pragma mark - Private methods
+
+- (NSString *)jsonStringWithDictionary:(NSDictionary *)dict {
+    NSData *data = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *retVal = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    return retVal;
+}
+
 @end

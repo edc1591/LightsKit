@@ -14,8 +14,12 @@
 
 @property (nonatomic, readonly) NSURL *serverURL;
 
-+ (instancetype)sharedSession;
+- (id)initWithServer:(NSURL *)url;
 
-- (void)queryState:(void (^)(LKEvent *event))block;
+- (void)openSessionWithCompletion:(void (^)())completion;
+
+- (void)sendEvent:(LKEvent *)event;
+
+- (void)queryStateWithBlock:(void (^)(LKEvent *event))block;
 
 @end

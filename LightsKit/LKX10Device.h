@@ -8,18 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSUInteger, LKX10Device) {
-    LKX10DeviceAppliance = 0,
-    LKX10DeviceLamp = 1,
+typedef NS_ENUM(NSUInteger, LKX10DeviceType) {
+    LKX10DeviceTypeAppliance = 0,
+    LKX10DeviceTypeLamp = 1,
 };
 
 @interface LKX10Device : NSObject
 
 @property (nonatomic, readonly) NSInteger deviceID;
 @property (nonatomic, readonly) NSInteger houseCode;
-@property (nonatomic, readonly) LKX10Device type;
+@property (nonatomic, readonly) LKX10DeviceType type;
 @property (nonatomic, readonly) NSString *name;
 
-+ (LKX10Device *)deviceWithID:(NSInteger)deviceID houseCode:(NSInteger)houseCode name:(NSString *)name type:(LKX10Device)type;
++ (LKX10Device *)deviceWithID:(NSInteger)deviceID houseCode:(NSInteger)houseCode name:(NSString *)name type:(LKX10DeviceType)type;
 
 @end

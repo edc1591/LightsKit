@@ -12,14 +12,14 @@
 
 @property (nonatomic) NSInteger deviceID;
 @property (nonatomic) NSInteger houseCode;
-@property (nonatomic) LKX10Device type;
+@property (nonatomic) LKX10DeviceType type;
 @property (nonatomic) NSString *name;
 
 @end
 
 @implementation LKX10Device
 
-+ (LKX10Device *)deviceWithID:(NSInteger)deviceID houseCode:(NSInteger)houseCode name:(NSString *)name type:(LKX10Device)type {
++ (LKX10Device *)deviceWithID:(NSInteger)deviceID houseCode:(NSInteger)houseCode name:(NSString *)name type:(LKX10DeviceType)type {
     LKX10Device *device = [[LKX10Device alloc] init];
     device.deviceID = deviceID;
     device.houseCode = houseCode;

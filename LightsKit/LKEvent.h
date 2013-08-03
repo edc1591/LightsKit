@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+static NSString * const LKEventTypeKey = @"event";
+static NSString * const LKColorKey = @"color";
+
 typedef NS_ENUM(NSUInteger, LKEventType) {
     LKEventTypeQuery = 0,
     LKEventTypeSolid = 1,
@@ -42,6 +45,8 @@ typedef NS_ENUM(NSUInteger, LKX10Command) {
 @property (nonatomic, readonly) LKX10Command command;
 @property (nonatomic, readonly) CGFloat speed;
 @property (nonatomic, readonly) CGFloat brightness;
+
+@property (nonatomic, readonly) NSString *bodyString;
 
 + (instancetype)eventWithType:(LKEventType)type;
 + (instancetype)colorEventWithColor:(LKColor *)color;

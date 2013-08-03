@@ -7,12 +7,16 @@
 //
 
 #import "LKSession.h"
-#import "LKResponse.h"
+#import "LKEvent.h"
+#import "LKColor.h"
 #import <SocketRocket/SRWebSocket.h>
 
 @interface LKSession () <SRWebSocketDelegate>
 
 @property (nonatomic) SRWebSocket *socket;
+
+@property (nonatomic, copy) void (^socketDidOpenBlock)();
+@property (nonatomic, copy) void (^didReceiveStateBlock)();
 
 @end
 
@@ -20,21 +24,11 @@
 
 #pragma mark - Class lifecycle
 
-+ (instancetype)sharedSession {
-    static id sharedSession = nil;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedSession = [[self alloc] init];
-    });
-    
-    return sharedSession;
-}
-
-- (id)init {
+- (id)initWithServer:(NSURL *)url {
     self = [super init];
     if (self) {
-        
+        self.socket = [[SRWebSocket alloc] initWithURL:url];
+        self.socket.delegate = self;
     }
     return self;
 }
@@ -47,20 +41,30 @@
 
 #pragma mark - SocketRocket methods
 
-- (void)openSessionWithURL:(NSURL *)url {
-    self.socket = [[SRWebSocket alloc] initWithURL:url];
-    self.socket.delegate = self;
+- (void)openSessionWithCompletion:(void (^)())completion {
+    self.socketDidOpenBlock = completion;
     [self.socket open];
 }
 
-- (void)queryState:(void (^)(LKResponse *))block {
-    
+- (void)sendEvent:(LKEvent *)event {
+    [self.socket send:event.bodyString];
+}
+
+#pragma mark - Convenience methods
+
+- (void)queryStateWithBlock:(void (^)(LKEvent *))block {
+    self.didReceiveStateBlock = block;
+    LKEvent *event = [LKEvent eventWithType:LKEventTypeQuery];
+    [self sendEvent:event];
 }
 
 #pragma mark - SocketRocket delegate
 
 - (void)webSocketDidOpen:(SRWebSocket *)webSocket {
-    
+    if (self.socketDidOpenBlock) {
+        self.socketDidOpenBlock();
+    }
+    self.socketDidOpenBlock = nil;
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error {
@@ -68,7 +72,17 @@
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message {
-    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if([message hasPrefix:@"currentState"]) {
+            NSString *command  = [message stringByReplacingOccurrencesOfString:@"currentState: " withString:@""];
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:[command dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
+            LKEvent *event = [LKEvent colorEventWithColor:[LKColor colorWithRGB:dict[LKColorKey]]];
+            if (self.didReceiveStateBlock) {
+                self.didReceiveStateBlock(event);
+            }
+            self.didReceiveStateBlock = nil;
+        }
+    });
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
