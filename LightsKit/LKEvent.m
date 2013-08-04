@@ -16,6 +16,7 @@
 @property (nonatomic) LKColor *color;
 @property (nonatomic) LKX10Device *device;
 @property (nonatomic) LKX10Command command;
+@property (nonatomic) NSUInteger index;
 @property (nonatomic) CGFloat speed;
 @property (nonatomic) CGFloat brightness;
 
@@ -32,6 +33,22 @@
 }
 
 #pragma mark - Convenience constructors
+
++ (instancetype)eventFromDictionary:(NSDictionary *)dictionary {
+    LKEventType type = [dictionary[LKEventTypeKey] integerValue];
+    
+    if (type == LKEventTypeSolid) {
+        LKColor *color = [LKColor colorWithRGB:dictionary[LKColorKey]];
+        return [LKEvent colorEventWithColor:color];
+    } else if (type == LKEventTypeX10Command) {
+        LKX10Device *device = [LKX10Device deviceWithDictionary:dictionary];
+        return [LKEvent x10EventWithDevice:device command:[dictionary[LKX10CommandKey] integerValue]];
+    } else if (dictionary[LKSpeedKey] || dictionary[LKBrightnessKey]) {
+        return [LKEvent animationEventWithType:type speed:[dictionary[LKSpeedKey] floatValue] brightness:[dictionary[LKBrightnessKey] floatValue]];
+    } else {
+        return [LKEvent eventWithType:type];
+    }
+}
 
 + (instancetype)eventWithType:(LKEventType)type {
     LKEvent *event = [[self alloc] init];
@@ -62,6 +79,13 @@
     return event;
 }
 
++ (instancetype)presetEventAtIndex:(NSUInteger)index {
+    LKEvent *event = [[self alloc] init];
+    event.type = LKEventTypeExecutePreset;
+    event.index = index;
+    return event;
+}
+
 #pragma mark - Public methods
 
 - (NSString *)bodyString {
@@ -74,12 +98,26 @@
         eventDict[LKX10DeviceIDKey] = @(self.device.deviceID);
         eventDict[LKX10HouseCodeKey] = @(self.device.houseCode);
         eventDict[LKX10CommandKey] = @(self.command);
+    } else if (self.type == LKEventTypeExecutePreset) {
+        eventDict[LKIndexKey] = @(self.index);
     } else {
         eventDict[LKSpeedKey] = @(self.speed);
         eventDict[LKBrightnessKey] = @(self.brightness);
     }
     
     return [self jsonStringWithDictionary:eventDict];
+}
+
+- (NSString *)description {
+    NSMutableString *string = [NSMutableString string];
+    [string appendFormat:@"%@: %ld\r", LKEventTypeKey, self.type];
+    if (self.type == LKEventTypeSolid) {
+        [string appendFormat:@"%@: %@\r", LKColorKey, self.color];
+    } else if (self.type == LKEventTypeX10Command) {
+        [string appendFormat:@"%@: %@\r", LKX10DeviceIDKey, self.device];
+        [string appendFormat:@"%@: %ld\r", LKX10CommandKey, self.command];
+    }
+    return string;
 }
 
 #pragma mark - Private methods

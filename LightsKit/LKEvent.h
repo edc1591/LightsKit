@@ -14,10 +14,13 @@ static NSString * const LKDevicesKey = @"devices";
 static NSString * const LKX10CommandKey = @"command";
 static NSString * const LKX10HouseCodeKey = @"houseCode";
 static NSString * const LKX10DeviceIDKey = @"device";
-static NSString * const LKX10DeviceNameKey = @"name";
+static NSString * const LKNameKey = @"name";
 static NSString * const LKX10DeviceTypeKey = @"type";
 static NSString * const LKSpeedKey = @"speed";
 static NSString * const LKBrightnessKey = @"brightness";
+static NSString * const LKIndexKey = @"index";
+static NSString * const LKPresetsKey = @"presets";
+static NSString * const LKActionsKey = @"actions";
 
 typedef NS_ENUM(NSUInteger, LKEventType) {
     LKEventTypeQuery = 0,
@@ -51,14 +54,18 @@ typedef NS_ENUM(NSUInteger, LKX10Command) {
 @property (nonatomic, readonly) LKColor *color;
 @property (nonatomic, readonly) LKX10Device *device;
 @property (nonatomic, readonly) LKX10Command command;
+@property (nonatomic, readonly) NSUInteger index;
 @property (nonatomic, readonly) CGFloat speed;
 @property (nonatomic, readonly) CGFloat brightness;
 
 @property (nonatomic, readonly) NSString *bodyString;
 
++ (instancetype)eventFromDictionary:(NSDictionary *)dictionary;
+
 + (instancetype)eventWithType:(LKEventType)type;
 + (instancetype)colorEventWithColor:(LKColor *)color;
 + (instancetype)animationEventWithType:(LKEventType)type speed:(CGFloat)speed brightness:(CGFloat)brightness;
 + (instancetype)x10EventWithDevice:(LKX10Device *)device command:(LKX10Command)command;
++ (instancetype)presetEventAtIndex:(NSUInteger)index;
 
 @end

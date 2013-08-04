@@ -17,5 +17,6 @@
 - (IBAction)getState:(id)sender;
 - (IBAction)setColor:(id)sender;
 - (IBAction)getDevices:(id)sender;
+- (IBAction)getPresets:(id)sender;
 
 @end

@@ -10,6 +10,7 @@
 #import "LKEvent.h"
 #import "LKColor.h"
 #import "LKX10Device.h"
+#import "LKPreset.h"
 
 @interface LKResponse ()
 
@@ -47,14 +48,17 @@
     } else if (eventType == LKEventTypeGetX10Devices) {
         NSMutableArray *devices = [NSMutableArray array];
         for (NSDictionary *deviceDict in responseDict[LKDevicesKey]) {
-            LKX10Device *device = [LKX10Device deviceWithID:[deviceDict[LKX10DeviceIDKey] integerValue]
-                                                  houseCode:[deviceDict[LKX10HouseCodeKey] integerValue]
-                                                       name:deviceDict[LKX10DeviceNameKey]
-                                                       type:[deviceDict[LKX10DeviceTypeKey] integerValue]];
-            [devices addObject:device];
+            [devices addObject:[LKX10Device deviceWithDictionary:deviceDict]];
         }
         self.event = [LKEvent eventWithType:eventType];
         self.objects = [devices copy];
+    } else if (eventType == LKEventTypeQueryPresets) {
+        NSMutableArray *presets = [NSMutableArray array];
+        for (NSDictionary *presetDict in responseDict[LKPresetsKey]) {
+            [presets addObject:[LKPreset presetFromDictionary:presetDict]];
+        }
+        self.event = [LKEvent eventWithType:eventType];
+        self.objects = [presets copy];
     } else {
         self.event = [LKEvent eventWithType:eventType];
     }

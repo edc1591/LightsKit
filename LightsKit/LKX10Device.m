@@ -7,6 +7,7 @@
 //
 
 #import "LKX10Device.h"
+#import "LKEvent.h"
 
 @interface LKX10Device ()
 
@@ -18,6 +19,13 @@
 @end
 
 @implementation LKX10Device
+
++ (LKX10Device *)deviceWithDictionary:(NSDictionary *)deviceDict {
+    return [LKX10Device deviceWithID:[deviceDict[LKX10DeviceIDKey] integerValue]
+                           houseCode:[deviceDict[LKX10HouseCodeKey] integerValue]
+                                name:deviceDict[LKNameKey]
+                                type:[deviceDict[LKX10DeviceTypeKey] integerValue]];
+}
 
 + (LKX10Device *)deviceWithID:(NSInteger)deviceID houseCode:(NSInteger)houseCode name:(NSString *)name type:(LKX10DeviceType)type {
     LKX10Device *device = [[LKX10Device alloc] init];

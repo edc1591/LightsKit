@@ -27,6 +27,8 @@
 		2095ABC017ACB2580056976A /* LKX10Device.h in Headers */ = {isa = PBXBuildFile; fileRef = 2095ABBE17ACB2580056976A /* LKX10Device.h */; };
 		2095ABC117ACB2580056976A /* LKX10Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 2095ABBF17ACB2580056976A /* LKX10Device.m */; };
 		2095ABC317ACB4D00056976A /* LightsKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 2095ABC217ACB4D00056976A /* LightsKit.h */; };
+		20DBBA0E17ADDAB600D189BB /* LKPreset.h in Headers */ = {isa = PBXBuildFile; fileRef = 20DBBA0C17ADDAB600D189BB /* LKPreset.h */; };
+		20DBBA0F17ADDAB600D189BB /* LKPreset.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DBBA0D17ADDAB600D189BB /* LKPreset.m */; };
 		DBA84396D1F14649ACB01EED /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7EDDA276EB4EC9BD77296A /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +72,8 @@
 		2095ABBE17ACB2580056976A /* LKX10Device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKX10Device.h; sourceTree = "<group>"; };
 		2095ABBF17ACB2580056976A /* LKX10Device.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKX10Device.m; sourceTree = "<group>"; };
 		2095ABC217ACB4D00056976A /* LightsKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightsKit.h; sourceTree = "<group>"; };
+		20DBBA0C17ADDAB600D189BB /* LKPreset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKPreset.h; sourceTree = "<group>"; };
+		20DBBA0D17ADDAB600D189BB /* LKPreset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKPreset.m; sourceTree = "<group>"; };
 		81E48CFC152046919D577328 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		8E7EDDA276EB4EC9BD77296A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -173,6 +177,8 @@
 				20506C2A17AD8AE40039CC8A /* LKColor.m */,
 				2095ABBE17ACB2580056976A /* LKX10Device.h */,
 				2095ABBF17ACB2580056976A /* LKX10Device.m */,
+				20DBBA0C17ADDAB600D189BB /* LKPreset.h */,
+				20DBBA0D17ADDAB600D189BB /* LKPreset.m */,
 				2095ABC217ACB4D00056976A /* LightsKit.h */,
 				2095ABAC17ACAF0D0056976A /* Supporting Files */,
 			);
@@ -202,6 +208,7 @@
 				20506C2717AD88B60039CC8A /* LKEvent.h in Headers */,
 				20506C2B17AD8AE40039CC8A /* LKColor.h in Headers */,
 				20506C6417ADA4F10039CC8A /* LKResponse.h in Headers */,
+				20DBBA0E17ADDAB600D189BB /* LKPreset.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +351,7 @@
 				20506C2817AD88B60039CC8A /* LKEvent.m in Sources */,
 				20506C2C17AD8AE40039CC8A /* LKColor.m in Sources */,
 				20506C6517ADA4F10039CC8A /* LKResponse.m in Sources */,
+				20DBBA0F17ADDAB600D189BB /* LKPreset.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,6 +526,7 @@
 				20506C5E17AD9E3F0039CC8A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2095AB9C17ACAF0D0056976A /* Build configuration list for PBXProject "LightsKit" */ = {
 			isa = XCConfigurationList;

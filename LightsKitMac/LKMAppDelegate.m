@@ -47,4 +47,10 @@
     }];
 }
 
+- (IBAction)getPresets:(id)sender {
+    [self.session queryPresetsWithBlock:^(LKResponse *response) {
+        NSLog(@"%@", response.objects);
+    }];
+}
+
 @end

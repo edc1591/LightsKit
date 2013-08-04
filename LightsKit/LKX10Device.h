@@ -20,6 +20,7 @@ typedef NS_ENUM(NSUInteger, LKX10DeviceType) {
 @property (nonatomic, readonly) LKX10DeviceType type;
 @property (nonatomic, readonly) NSString *name;
 
++ (LKX10Device *)deviceWithDictionary:(NSDictionary *)deviceDict;
 + (LKX10Device *)deviceWithID:(NSInteger)deviceID houseCode:(NSInteger)houseCode name:(NSString *)name type:(LKX10DeviceType)type;
 
 @end
