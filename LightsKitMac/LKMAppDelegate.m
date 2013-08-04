@@ -53,4 +53,10 @@
     }];
 }
 
+- (IBAction)getSchedule:(id)sender {
+    [self.session queryScheduleWithBlock:^(LKResponse *response) {
+        NSLog(@"%@", response.objects);
+    }];
+}
+
 @end

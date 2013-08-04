@@ -11,6 +11,7 @@
 #import "LKColor.h"
 #import "LKX10Device.h"
 #import "LKPreset.h"
+#import "LKScheduledEvent.h"
 
 @interface LKResponse ()
 
@@ -59,6 +60,13 @@
         }
         self.event = [LKEvent eventWithType:eventType];
         self.objects = [presets copy];
+    } else if (eventType == LKEventTypeQuerySchedule) {
+        NSMutableArray *events = [NSMutableArray array];
+        for (NSDictionary *eventDict in responseDict[LKEventsKey]) {
+            [events addObject:[LKScheduledEvent eventFromDictionary:eventDict]];
+        }
+        self.event = [LKEvent eventWithType:eventType];
+        self.objects = [events copy];
     } else {
         self.event = [LKEvent eventWithType:eventType];
     }

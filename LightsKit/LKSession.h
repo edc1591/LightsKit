@@ -23,5 +23,6 @@
 - (void)queryStateWithBlock:(void (^)(LKResponse *response))block;
 - (void)queryX10DevicesWithBlock:(void (^)(LKResponse *response))block;
 - (void)queryPresetsWithBlock:(void (^)(LKResponse *response))block;
+- (void)queryScheduleWithBlock:(void (^)(LKResponse *response))block;
 
 @end

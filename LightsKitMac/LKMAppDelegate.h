@@ -18,5 +18,6 @@
 - (IBAction)setColor:(id)sender;
 - (IBAction)getDevices:(id)sender;
 - (IBAction)getPresets:(id)sender;
+- (IBAction)getSchedule:(id)sender;
 
 @end

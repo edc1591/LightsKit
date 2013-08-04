@@ -20,6 +20,7 @@
 @property (nonatomic, copy) void (^didReceiveStateBlock)(LKResponse *response);
 @property (nonatomic, copy) void (^didReceiveDevicesBlock)(LKResponse *response);
 @property (nonatomic, copy) void (^didReceivePresetsBlock)(LKResponse *response);
+@property (nonatomic, copy) void (^didReceiveScheduleBlock)(LKResponse *response);
 
 @end
 
@@ -73,6 +74,12 @@
     [self sendEvent:event];
 }
 
+- (void)queryScheduleWithBlock:(void (^)(LKResponse *))block {
+    self.didReceiveScheduleBlock = block;
+    LKEvent *event = [LKEvent eventWithType:LKEventTypeQuerySchedule];
+    [self sendEvent:event];
+}
+
 #pragma mark - SocketRocket delegate
 
 - (void)webSocketDidOpen:(SRWebSocket *)webSocket {
@@ -107,6 +114,11 @@
                     self.didReceivePresetsBlock(response);
                 }
                 self.didReceivePresetsBlock = nil;
+            } else if (response.event.type == LKEventTypeQuerySchedule) {
+                if (self.didReceiveScheduleBlock) {
+                    self.didReceiveScheduleBlock(response);
+                }
+                self.didReceiveScheduleBlock = nil;
             }
         }
     });

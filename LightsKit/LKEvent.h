@@ -21,6 +21,7 @@ static NSString * const LKBrightnessKey = @"brightness";
 static NSString * const LKIndexKey = @"index";
 static NSString * const LKPresetsKey = @"presets";
 static NSString * const LKActionsKey = @"actions";
+static NSString * const LKEventsKey = @"events";
 
 typedef NS_ENUM(NSUInteger, LKEventType) {
     LKEventTypeQuery = 0,
@@ -59,6 +60,7 @@ typedef NS_ENUM(NSUInteger, LKX10Command) {
 @property (nonatomic, readonly) CGFloat brightness;
 
 @property (nonatomic, readonly) NSString *bodyString;
+@property (nonatomic, readonly) NSDictionary *dictionaryRepresentation;
 
 + (instancetype)eventFromDictionary:(NSDictionary *)dictionary;
 

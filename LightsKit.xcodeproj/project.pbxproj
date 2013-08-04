@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		200FE6B417ADFD9700E66CC9 /* LKScheduledEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 200FE6B217ADFD9700E66CC9 /* LKScheduledEvent.h */; };
+		200FE6B517ADFD9700E66CC9 /* LKScheduledEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 200FE6B317ADFD9700E66CC9 /* LKScheduledEvent.m */; };
 		20506C2717AD88B60039CC8A /* LKEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 20506C2517AD88B60039CC8A /* LKEvent.h */; };
 		20506C2817AD88B60039CC8A /* LKEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 20506C2617AD88B60039CC8A /* LKEvent.m */; };
 		20506C2B17AD8AE40039CC8A /* LKColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 20506C2917AD8AE40039CC8A /* LKColor.h */; };
@@ -43,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		200FE6B217ADFD9700E66CC9 /* LKScheduledEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKScheduledEvent.h; sourceTree = "<group>"; };
+		200FE6B317ADFD9700E66CC9 /* LKScheduledEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKScheduledEvent.m; sourceTree = "<group>"; };
 		20506C2517AD88B60039CC8A /* LKEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKEvent.h; sourceTree = "<group>"; };
 		20506C2617AD88B60039CC8A /* LKEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKEvent.m; sourceTree = "<group>"; };
 		20506C2917AD8AE40039CC8A /* LKColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKColor.h; sourceTree = "<group>"; };
@@ -171,6 +175,8 @@
 				2095ABBB17ACAFB60056976A /* LKSession.m */,
 				20506C2517AD88B60039CC8A /* LKEvent.h */,
 				20506C2617AD88B60039CC8A /* LKEvent.m */,
+				200FE6B217ADFD9700E66CC9 /* LKScheduledEvent.h */,
+				200FE6B317ADFD9700E66CC9 /* LKScheduledEvent.m */,
 				20506C6217ADA4F10039CC8A /* LKResponse.h */,
 				20506C6317ADA4F10039CC8A /* LKResponse.m */,
 				20506C2917AD8AE40039CC8A /* LKColor.h */,
@@ -209,6 +215,7 @@
 				20506C2B17AD8AE40039CC8A /* LKColor.h in Headers */,
 				20506C6417ADA4F10039CC8A /* LKResponse.h in Headers */,
 				20DBBA0E17ADDAB600D189BB /* LKPreset.h in Headers */,
+				200FE6B417ADFD9700E66CC9 /* LKScheduledEvent.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,6 +359,7 @@
 				20506C2C17AD8AE40039CC8A /* LKColor.m in Sources */,
 				20506C6517ADA4F10039CC8A /* LKResponse.m in Sources */,
 				20DBBA0F17ADDAB600D189BB /* LKPreset.m in Sources */,
+				200FE6B517ADFD9700E66CC9 /* LKScheduledEvent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

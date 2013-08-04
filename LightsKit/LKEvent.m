@@ -39,14 +39,14 @@
     
     if (type == LKEventTypeSolid) {
         LKColor *color = [LKColor colorWithRGB:dictionary[LKColorKey]];
-        return [LKEvent colorEventWithColor:color];
+        return [self colorEventWithColor:color];
     } else if (type == LKEventTypeX10Command) {
         LKX10Device *device = [LKX10Device deviceWithDictionary:dictionary];
-        return [LKEvent x10EventWithDevice:device command:[dictionary[LKX10CommandKey] integerValue]];
+        return [self x10EventWithDevice:device command:[dictionary[LKX10CommandKey] integerValue]];
     } else if (dictionary[LKSpeedKey] || dictionary[LKBrightnessKey]) {
-        return [LKEvent animationEventWithType:type speed:[dictionary[LKSpeedKey] floatValue] brightness:[dictionary[LKBrightnessKey] floatValue]];
+        return [self animationEventWithType:type speed:[dictionary[LKSpeedKey] floatValue] brightness:[dictionary[LKBrightnessKey] floatValue]];
     } else {
-        return [LKEvent eventWithType:type];
+        return [self eventWithType:type];
     }
 }
 
@@ -89,6 +89,10 @@
 #pragma mark - Public methods
 
 - (NSString *)bodyString {
+    return [self jsonStringWithDictionary:self.dictionaryRepresentation];
+}
+
+- (NSDictionary *)dictionaryRepresentation {
     NSMutableDictionary *eventDict = [NSMutableDictionary dictionary];
     eventDict[LKEventTypeKey] = @(self.type);
     
@@ -104,8 +108,7 @@
         eventDict[LKSpeedKey] = @(self.speed);
         eventDict[LKBrightnessKey] = @(self.brightness);
     }
-    
-    return [self jsonStringWithDictionary:eventDict];
+    return eventDict;
 }
 
 - (NSString *)description {
