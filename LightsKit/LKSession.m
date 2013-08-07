@@ -10,6 +10,7 @@
 #import "LKEvent.h"
 #import "LKColor.h"
 #import "LKResponse.h"
+#import "LKPreset.h"
 #import <SocketRocket/SRWebSocket.h>
 
 @interface LKSession () <SRWebSocketDelegate>
@@ -52,6 +53,11 @@
 
 - (void)sendEvent:(LKEvent *)event {
     [self.socket send:event.bodyString];
+}
+
+- (void)executePreset:(LKPreset *)preset {
+    LKEvent *event = [LKEvent presetEventAtIndex:preset.index];
+    [self sendEvent:event];
 }
 
 #pragma mark - Convenience methods

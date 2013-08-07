@@ -9,6 +9,12 @@
 #import "LKPreset.h"
 #import "LKEvent.h"
 
+@interface LKPreset ()
+
+@property (nonatomic) NSUInteger index;
+
+@end
+
 @implementation LKPreset
 
 - (instancetype)init {
@@ -23,6 +29,7 @@
     LKPreset *preset = [[self alloc] init];
     
     preset.name = dict[LKNameKey];
+    preset.index = [dict[LKIndexKey] unsignedIntegerValue];
     for (NSDictionary *d in dict[LKActionsKey]) {
         [preset.actions addObject:[LKEvent eventFromDictionary:d]];
     }
