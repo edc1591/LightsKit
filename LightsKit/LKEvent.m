@@ -99,7 +99,7 @@
     if (self.type == LKEventTypeSolid) {
         eventDict[LKColorKey] = self.color.rgb;
     } else if (self.type == LKEventTypeX10Command) {
-        eventDict[LKX10DeviceIDKey] = @(self.device.deviceID);
+        eventDict[LKX10DeviceKey] = @(self.device.deviceID);
         eventDict[LKX10HouseCodeKey] = @(self.device.houseCode);
         eventDict[LKX10CommandKey] = @(self.command);
     } else if (self.type == LKEventTypeExecutePreset) {
