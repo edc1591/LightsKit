@@ -14,7 +14,8 @@
 
 @property (nonatomic, readonly) NSURL *serverURL;
 
-- (id)initWithServer:(NSURL *)url;
++ (instancetype)activeSession;
+- (instancetype)initWithServer:(NSURL *)url;
 
 - (void)openSessionWithCompletion:(void (^)())completion;
 

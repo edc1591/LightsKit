@@ -13,6 +13,8 @@
 #import "LKPreset.h"
 #import <SocketRocket/SRWebSocket.h>
 
+static id _activeSession = nil;
+
 @interface LKSession () <SRWebSocketDelegate>
 
 @property (nonatomic) SRWebSocket *socket;
@@ -29,9 +31,14 @@
 
 #pragma mark - Class lifecycle
 
-- (id)initWithServer:(NSURL *)url {
++ (instancetype)activeSession {
+    return _activeSession;
+}
+
+- (instancetype)initWithServer:(NSURL *)url {
     self = [super init];
     if (self) {
+        _activeSession = self;
         self.socket = [[SRWebSocket alloc] initWithURL:url];
         self.socket.delegate = self;
     }
