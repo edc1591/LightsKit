@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
   s.name         = "LightsKit"
-  s.version      = "1.0.2"
+  s.version      = "1.0.3"
   s.summary      = "A short description of LightsKit."
-  s.source       = { :git => "https://github.com/edc1591/LightsKit.git", :tag => "1.0.2" }
+  s.source       = { :git => "https://github.com/edc1591/LightsKit.git", :tag => "1.0.3" }
 
   s.source_files = 'LightsKit/*.{h,m}'
 
