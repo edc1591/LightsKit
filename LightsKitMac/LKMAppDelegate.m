@@ -12,6 +12,7 @@
 @interface LKMAppDelegate ()
 
 @property (nonatomic) LKSession *session;
+@property (nonatomic) NSArray *presets;
 
 @end
 
@@ -49,7 +50,12 @@
 
 - (IBAction)getPresets:(id)sender {
     [self.session queryPresetsWithBlock:^(LKResponse *response) {
-        NSLog(@"%@", response.objects);
+        self.presets = response.objects;
+        [self.presetsPopup removeAllItems];
+        [self.presets enumerateObjectsUsingBlock:^(LKPreset *obj, NSUInteger idx, BOOL *stop) {
+            [self.presetsPopup addItemWithTitle:obj.name];
+        }];
+        NSLog(@"%@", self.presets);
     }];
 }
 
@@ -57,6 +63,11 @@
     [self.session queryScheduleWithBlock:^(LKResponse *response) {
         NSLog(@"%@", response.objects);
     }];
+}
+
+- (IBAction)executePreset:(id)sender {
+    LKPreset *preset = self.presets[[self.presetsPopup indexOfSelectedItem]];
+    [self.session executePreset:preset];
 }
 
 @end

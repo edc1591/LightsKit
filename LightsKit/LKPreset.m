@@ -25,11 +25,11 @@
     return self;
 }
 
-+ (instancetype)presetFromDictionary:(NSDictionary *)dict {
++ (instancetype)presetFromDictionary:(NSDictionary *)dict atIndex:(NSUInteger)index {
     LKPreset *preset = [[self alloc] init];
     
     preset.name = dict[LKNameKey];
-    preset.index = [dict[LKIndexKey] unsignedIntegerValue];
+    preset.index = index;
     for (NSDictionary *d in dict[LKActionsKey]) {
         [preset.actions addObject:[LKEvent eventFromDictionary:d]];
     }

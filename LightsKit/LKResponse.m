@@ -55,9 +55,10 @@
         self.objects = [devices copy];
     } else if (eventType == LKEventTypeQueryPresets) {
         NSMutableArray *presets = [NSMutableArray array];
-        for (NSDictionary *presetDict in responseDict[LKPresetsKey]) {
-            [presets addObject:[LKPreset presetFromDictionary:presetDict]];
-        }
+        [responseDict[LKPresetsKey] enumerateObjectsUsingBlock:^(NSDictionary *presetDict, NSUInteger idx, BOOL *stop) {
+            LKPreset *preset = [LKPreset presetFromDictionary:presetDict atIndex:idx];
+            [presets addObject:preset];
+        }];
         self.event = [LKEvent eventWithType:eventType];
         self.objects = [presets copy];
     } else if (eventType == LKEventTypeQuerySchedule) {

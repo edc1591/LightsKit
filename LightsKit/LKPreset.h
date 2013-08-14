@@ -14,6 +14,6 @@
 @property (nonatomic) NSMutableArray *actions;
 @property (nonatomic, readonly) NSUInteger index;
 
-+ (instancetype)presetFromDictionary:(NSDictionary *)dict;
++ (instancetype)presetFromDictionary:(NSDictionary *)dict atIndex:(NSUInteger)index;
 
 @end
