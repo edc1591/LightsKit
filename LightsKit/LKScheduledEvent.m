@@ -25,6 +25,12 @@
 
 #pragma mark - Public methods
 
+- (void)setDate:(NSDate *)date timeZone:(NSTimeZone *)timeZone andRepeat:(NSString *)repeat {
+    self.date = date;
+    self.timeZone = timeZone;
+    self.repeat = repeat;
+}
+
 - (NSDictionary *)dictionaryRepresentation {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[LKRepeatKey] = self.repeat;
