@@ -12,6 +12,8 @@
 		2025C3D9184923DD00B28197 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2025C3D7184923DD00B28197 /* MainMenu.xib */; };
 		203578F5184A715500DAC1B8 /* LKEventCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 203578F3184A715500DAC1B8 /* LKEventCollection.h */; };
 		203578F6184A715500DAC1B8 /* LKEventCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 203578F4184A715500DAC1B8 /* LKEventCollection.m */; };
+		203578FB184A930900DAC1B8 /* LKUserSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 203578F9184A930900DAC1B8 /* LKUserSession.h */; };
+		203578FC184A930900DAC1B8 /* LKUserSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 203578FA184A930900DAC1B8 /* LKUserSession.m */; };
 		20506C2717AD88B60039CC8A /* LKEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 20506C2517AD88B60039CC8A /* LKEvent.h */; };
 		20506C2817AD88B60039CC8A /* LKEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 20506C2617AD88B60039CC8A /* LKEvent.m */; };
 		20506C2B17AD8AE40039CC8A /* LKColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 20506C2917AD8AE40039CC8A /* LKColor.h */; };
@@ -54,6 +56,8 @@
 		2025C3D8184923DD00B28197 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		203578F3184A715500DAC1B8 /* LKEventCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKEventCollection.h; sourceTree = "<group>"; };
 		203578F4184A715500DAC1B8 /* LKEventCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKEventCollection.m; sourceTree = "<group>"; };
+		203578F9184A930900DAC1B8 /* LKUserSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKUserSession.h; sourceTree = "<group>"; };
+		203578FA184A930900DAC1B8 /* LKUserSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKUserSession.m; sourceTree = "<group>"; };
 		20506C2517AD88B60039CC8A /* LKEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKEvent.h; sourceTree = "<group>"; };
 		20506C2617AD88B60039CC8A /* LKEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKEvent.m; sourceTree = "<group>"; };
 		20506C2917AD8AE40039CC8A /* LKColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKColor.h; sourceTree = "<group>"; };
@@ -179,6 +183,8 @@
 		2095ABAB17ACAF0D0056976A /* LightsKit */ = {
 			isa = PBXGroup;
 			children = (
+				203578F9184A930900DAC1B8 /* LKUserSession.h */,
+				203578FA184A930900DAC1B8 /* LKUserSession.m */,
 				2095ABBA17ACAFB60056976A /* LKSocketSession.h */,
 				2095ABBB17ACAFB60056976A /* LKSocketSession.m */,
 				2099898818490E3D0007759D /* LKSession.h */,
@@ -224,6 +230,7 @@
 				2095ABBC17ACAFB60056976A /* LKSocketSession.h in Headers */,
 				2095ABC017ACB2580056976A /* LKX10Device.h in Headers */,
 				2095ABC317ACB4D00056976A /* LightsKit.h in Headers */,
+				203578FB184A930900DAC1B8 /* LKUserSession.h in Headers */,
 				20506C2717AD88B60039CC8A /* LKEvent.h in Headers */,
 				2099898A18490E3D0007759D /* LKSession.h in Headers */,
 				20506C2B17AD8AE40039CC8A /* LKColor.h in Headers */,
@@ -371,6 +378,7 @@
 				2099898B18490E3D0007759D /* LKSession.m in Sources */,
 				203578F6184A715500DAC1B8 /* LKEventCollection.m in Sources */,
 				2095ABC117ACB2580056976A /* LKX10Device.m in Sources */,
+				203578FC184A930900DAC1B8 /* LKUserSession.m in Sources */,
 				20506C2817AD88B60039CC8A /* LKEvent.m in Sources */,
 				20506C2C17AD8AE40039CC8A /* LKColor.m in Sources */,
 				20506C6517ADA4F10039CC8A /* LKResponse.m in Sources */,
