@@ -55,6 +55,14 @@ static id _activeSession = nil;
     [self.socket open];
 }
 
+- (void)closeSession {
+    [self.socket close];
+}
+
+- (void)resumeSessionWithCompletion:(void (^)())completion {
+    [self openSessionWithCompletion:completion];
+}
+
 - (void)sendEvent:(LKEvent *)event {
     [self.socket send:event.bodyString];
 }

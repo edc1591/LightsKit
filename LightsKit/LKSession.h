@@ -18,6 +18,8 @@
 - (instancetype)initWithServer:(NSURL *)url;
 
 - (void)openSessionWithUsername:(NSString *)username password:(NSString *)password completion:(void (^)())completion;
+- (void)suspendSession;
+- (void)resumeSessionWithCompletion:(void (^)())completion;
 
 - (void)sendEvent:(LKEvent *)event;
 - (void)sendEventCollection:(LKEventCollection *)collection;

@@ -72,6 +72,14 @@ static id _activeSession = nil;
     }];
 }
 
+- (void)suspendSession {
+    [self.socketSession closeSession];
+}
+
+- (void)resumeSessionWithCompletion:(void (^)())completion {
+    [self.socketSession openSessionWithCompletion:completion];
+}
+
 - (void)sendEvent:(LKEvent *)event {
     [self.socketSession sendEvent:event];
 }

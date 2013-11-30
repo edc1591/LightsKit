@@ -18,6 +18,8 @@
 - (instancetype)initWithServer:(NSURL *)url;
 
 - (void)openSessionWithCompletion:(void (^)())completion;
+- (void)closeSession;
+- (void)resumeSessionWithCompletion:(void (^)())completion;
 
 - (void)sendEvent:(LKEvent *)event;
 - (void)sendEventCollection:(LKEventCollection *)collection;
