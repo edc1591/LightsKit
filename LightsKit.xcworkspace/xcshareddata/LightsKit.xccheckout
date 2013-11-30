@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>E503B22A-736F-4D17-9FEC-F6A8DE00B0C1</string>
+	<key>IDESourceControlProjectName</key>
+	<string>LightsKit</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>D3E2C4B0-BF74-4CA7-93ED-E4A0D5986B42</key>
+		<string>https://github.com/edc1591/LightsKit.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>LightsKit.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>D3E2C4B0-BF74-4CA7-93ED-E4A0D5986B42</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/edc1591/LightsKit.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>D3E2C4B0-BF74-4CA7-93ED-E4A0D5986B42</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D3E2C4B0-BF74-4CA7-93ED-E4A0D5986B42</string>
+			<key>IDESourceControlWCCName</key>
+			<string>LightsKit</string>
+		</dict>
+	</array>
+</dict>
+</plist>
