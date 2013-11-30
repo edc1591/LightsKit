@@ -5,3 +5,4 @@
 #import "LKX10Device.h"
 #import "LKPreset.h"
 #import "LKScheduledEvent.h"
+#import "LKEventCollection.h"

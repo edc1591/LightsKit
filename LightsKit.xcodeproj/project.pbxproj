@@ -10,6 +10,8 @@
 		200FE6B417ADFD9700E66CC9 /* LKScheduledEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 200FE6B217ADFD9700E66CC9 /* LKScheduledEvent.h */; };
 		200FE6B517ADFD9700E66CC9 /* LKScheduledEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 200FE6B317ADFD9700E66CC9 /* LKScheduledEvent.m */; };
 		2025C3D9184923DD00B28197 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2025C3D7184923DD00B28197 /* MainMenu.xib */; };
+		203578F5184A715500DAC1B8 /* LKEventCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 203578F3184A715500DAC1B8 /* LKEventCollection.h */; };
+		203578F6184A715500DAC1B8 /* LKEventCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 203578F4184A715500DAC1B8 /* LKEventCollection.m */; };
 		20506C2717AD88B60039CC8A /* LKEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 20506C2517AD88B60039CC8A /* LKEvent.h */; };
 		20506C2817AD88B60039CC8A /* LKEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 20506C2617AD88B60039CC8A /* LKEvent.m */; };
 		20506C2B17AD8AE40039CC8A /* LKColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 20506C2917AD8AE40039CC8A /* LKColor.h */; };
@@ -50,6 +52,8 @@
 		200FE6B217ADFD9700E66CC9 /* LKScheduledEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKScheduledEvent.h; sourceTree = "<group>"; };
 		200FE6B317ADFD9700E66CC9 /* LKScheduledEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKScheduledEvent.m; sourceTree = "<group>"; };
 		2025C3D8184923DD00B28197 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		203578F3184A715500DAC1B8 /* LKEventCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKEventCollection.h; sourceTree = "<group>"; };
+		203578F4184A715500DAC1B8 /* LKEventCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKEventCollection.m; sourceTree = "<group>"; };
 		20506C2517AD88B60039CC8A /* LKEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKEvent.h; sourceTree = "<group>"; };
 		20506C2617AD88B60039CC8A /* LKEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKEvent.m; sourceTree = "<group>"; };
 		20506C2917AD8AE40039CC8A /* LKColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKColor.h; sourceTree = "<group>"; };
@@ -181,6 +185,8 @@
 				2099898918490E3D0007759D /* LKSession.m */,
 				20506C2517AD88B60039CC8A /* LKEvent.h */,
 				20506C2617AD88B60039CC8A /* LKEvent.m */,
+				203578F3184A715500DAC1B8 /* LKEventCollection.h */,
+				203578F4184A715500DAC1B8 /* LKEventCollection.m */,
 				200FE6B217ADFD9700E66CC9 /* LKScheduledEvent.h */,
 				200FE6B317ADFD9700E66CC9 /* LKScheduledEvent.m */,
 				20506C6217ADA4F10039CC8A /* LKResponse.h */,
@@ -214,6 +220,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				203578F5184A715500DAC1B8 /* LKEventCollection.h in Headers */,
 				2095ABBC17ACAFB60056976A /* LKSocketSession.h in Headers */,
 				2095ABC017ACB2580056976A /* LKX10Device.h in Headers */,
 				2095ABC317ACB4D00056976A /* LightsKit.h in Headers */,
@@ -362,6 +369,7 @@
 			files = (
 				2095ABBD17ACAFB60056976A /* LKSocketSession.m in Sources */,
 				2099898B18490E3D0007759D /* LKSession.m in Sources */,
+				203578F6184A715500DAC1B8 /* LKEventCollection.m in Sources */,
 				2095ABC117ACB2580056976A /* LKX10Device.m in Sources */,
 				20506C2817AD88B60039CC8A /* LKEvent.m in Sources */,
 				20506C2C17AD8AE40039CC8A /* LKColor.m in Sources */,
