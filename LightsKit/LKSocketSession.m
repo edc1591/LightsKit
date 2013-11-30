@@ -19,6 +19,7 @@ static id _activeSession = nil;
 @interface LKSocketSession () <SRWebSocketDelegate>
 
 @property (nonatomic) SRWebSocket *socket;
+@property (nonatomic) NSURL *serverURL;
 
 @property (nonatomic, copy) void (^socketDidOpenBlock)();
 
@@ -36,16 +37,11 @@ static id _activeSession = nil;
     self = [super init];
     if (self) {
         _activeSession = self;
+        self.serverURL = url;
         self.socket = [[SRWebSocket alloc] initWithURL:url];
         self.socket.delegate = self;
     }
     return self;
-}
-
-#pragma mark - Getters
-
-- (NSURL *)serverURL {
-    return self.socket.url;
 }
 
 #pragma mark - SocketRocket methods
@@ -57,9 +53,12 @@ static id _activeSession = nil;
 
 - (void)closeSession {
     [self.socket close];
+    self.socket = nil;
 }
 
 - (void)resumeSessionWithCompletion:(void (^)())completion {
+    self.socket = [[SRWebSocket alloc] initWithURL:self.serverURL];
+    self.socket.delegate = self;
     [self openSessionWithCompletion:completion];
 }
 
