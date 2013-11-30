@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class LKEvent, LKResponse, LKPreset;
+@class LKEvent, LKResponse, LKPreset, LKEventCollection;
 
 @interface LKSocketSession : NSObject
 
@@ -20,5 +20,6 @@
 - (void)openSessionWithCompletion:(void (^)())completion;
 
 - (void)sendEvent:(LKEvent *)event;
+- (void)sendEventCollection:(LKEventCollection *)collection;
 
 @end

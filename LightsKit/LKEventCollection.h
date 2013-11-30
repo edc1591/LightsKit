@@ -15,4 +15,7 @@
 
 + (instancetype)collectionWithDevices:(NSArray *)devices command:(LKX10Command)command;
 
+- (NSString *)bodyString;
+- (NSDictionary *)dictionaryRepresentation;
+
 @end

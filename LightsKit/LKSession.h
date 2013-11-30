@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class LKEvent, LKResponse, LKPreset;
+@class LKEvent, LKResponse, LKPreset, LKEventCollection;
 
 @interface LKSession : NSObject
 
@@ -20,6 +20,7 @@
 - (void)openSessionWithUsername:(NSString *)username password:(NSString *)password completion:(void (^)())completion;
 
 - (void)sendEvent:(LKEvent *)event;
+- (void)sendEventCollection:(LKEventCollection *)collection;
 - (void)executePreset:(LKPreset *)preset;
 
 - (void)queryStateWithBlock:(void (^)(LKResponse *response))block;

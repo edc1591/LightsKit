@@ -12,6 +12,7 @@
 #import "LKResponse.h"
 #import "LKPreset.h"
 #import "LKSocketSession.h"
+#import "LKEventCollection.h"
 #import <AFNetworking/AFNetworking.h>
 
 static id _activeSession = nil;
@@ -73,6 +74,10 @@ static id _activeSession = nil;
 
 - (void)sendEvent:(LKEvent *)event {
     [self.socketSession sendEvent:event];
+}
+
+- (void)sendEventCollection:(LKEventCollection *)collection {
+    [self.socketSession sendEventCollection:collection];
 }
 
 - (void)executePreset:(LKPreset *)preset {

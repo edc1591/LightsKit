@@ -11,6 +11,7 @@
 #import "LKColor.h"
 #import "LKResponse.h"
 #import "LKPreset.h"
+#import "LKEventCollection.h"
 #import <SocketRocket/SRWebSocket.h>
 
 static id _activeSession = nil;
@@ -56,6 +57,10 @@ static id _activeSession = nil;
 
 - (void)sendEvent:(LKEvent *)event {
     [self.socket send:event.bodyString];
+}
+
+- (void)sendEventCollection:(LKEventCollection *)collection {
+    [self.socket send:collection.bodyString];
 }
 
 #pragma mark - Convenience methods

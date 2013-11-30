@@ -37,4 +37,27 @@
     return self;
 }
 
+- (NSString *)jsonStringWithDictionary:(NSDictionary *)dict {
+    NSArray *array = @[@"command_collection", @{@"data":dict}];
+    NSData *data = [NSJSONSerialization dataWithJSONObject:array options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *retVal = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    return retVal;
+}
+
+#pragma mark - Public methods
+
+- (NSString *)bodyString {
+    return [self jsonStringWithDictionary:self.dictionaryRepresentation];
+}
+
+- (NSDictionary *)dictionaryRepresentation {
+    NSMutableDictionary *eventDict = [NSMutableDictionary dictionary];
+    NSMutableArray *events = [NSMutableArray array];
+    for (LKEvent *event in self.events) {
+        [events addObject:event.dictionaryRepresentation];
+    }
+    eventDict[@"events"] = events;
+    return eventDict;
+}
+
 @end
