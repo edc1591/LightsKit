@@ -15,7 +15,6 @@
 
 @interface LKResponse ()
 
-@property (nonatomic) NSString *bodyString;
 @property (nonatomic) LKEvent *event;
 @property (nonatomic) NSArray *objects;
 @property (nonatomic) NSError *error;
@@ -24,24 +23,29 @@
 
 @implementation LKResponse
 
-+ (instancetype)responseWithBodyString:(NSString *)body {
++ (instancetype)responseWithDict:(NSDictionary *)dict {
     LKResponse *response = [[self alloc] init];
-    response.bodyString = body;
-    [response parseOutResponseString:body];
+    [response parseOutResponse:dict];
+    return response;
+}
+
++ (instancetype)responseWithDevices:(NSArray *)devices {
+    LKResponse *response = [[self alloc] init];
+    [response parseOutDevices:devices];
     return response;
 }
 
 #pragma mark - Private methods
 
-- (void)parseOutResponseString:(NSString *)string {
-    NSData *bodyData = [string dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *error = nil;
-    NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:bodyData options:NSJSONReadingAllowFragments error:&error];
-    if (error) {
-        self.error = error;
-        return;
+- (void)parseOutDevices:(NSArray *)devices_ {
+    NSMutableArray *devices = [NSMutableArray array];
+    for (NSDictionary *deviceDict in devices_) {
+        [devices addObject:[LKX10Device deviceWithDictionary:deviceDict]];
     }
-    
+    self.objects = [devices copy];
+}
+
+- (void)parseOutResponse:(NSDictionary *)responseDict {
     LKEventType eventType = [responseDict[LKEventTypeKey] integerValue];
     
     if (eventType == LKEventTypeSolid) {

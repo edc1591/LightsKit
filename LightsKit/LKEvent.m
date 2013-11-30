@@ -126,7 +126,8 @@
 #pragma mark - Private methods
 
 - (NSString *)jsonStringWithDictionary:(NSDictionary *)dict {
-    NSData *data = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
+    NSArray *array = @[@"command", @{@"data":dict}];
+    NSData *data = [NSJSONSerialization dataWithJSONObject:array options:NSJSONWritingPrettyPrinted error:nil];
     NSString *retVal = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     return retVal;
 }

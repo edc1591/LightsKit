@@ -14,6 +14,7 @@
 @property (weak) IBOutlet NSTextField *statusLabel;
 @property (weak) IBOutlet NSColorWell *colorWell;
 @property (weak) IBOutlet NSPopUpButton *presetsPopup;
+@property (weak) IBOutlet NSPopUpButton *devicesPopup;
 
 - (IBAction)getState:(id)sender;
 - (IBAction)setColor:(id)sender;
@@ -21,5 +22,7 @@
 - (IBAction)getPresets:(id)sender;
 - (IBAction)getSchedule:(id)sender;
 - (IBAction)executePreset:(id)sender;
+- (IBAction)on:(id)sender;
+- (IBAction)off:(id)sender;
 
 @end

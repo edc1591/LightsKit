@@ -2,7 +2,7 @@
 //  LKSession.h
 //  LightsKit
 //
-//  Created by Evan Coleman on 8/2/13.
+//  Created by Evan Coleman on 11/29/13.
 //  Copyright (c) 2013 Evan Coleman. All rights reserved.
 //
 
@@ -17,7 +17,7 @@
 + (instancetype)activeSession;
 - (instancetype)initWithServer:(NSURL *)url;
 
-- (void)openSessionWithCompletion:(void (^)())completion;
+- (void)openSessionWithUsername:(NSString *)username password:(NSString *)password completion:(void (^)())completion;
 
 - (void)sendEvent:(LKEvent *)event;
 - (void)executePreset:(LKPreset *)preset;

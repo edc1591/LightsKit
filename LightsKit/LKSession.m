@@ -2,7 +2,7 @@
 //  LKSession.m
 //  LightsKit
 //
-//  Created by Evan Coleman on 8/2/13.
+//  Created by Evan Coleman on 11/29/13.
 //  Copyright (c) 2013 Evan Coleman. All rights reserved.
 //
 
@@ -11,15 +11,17 @@
 #import "LKColor.h"
 #import "LKResponse.h"
 #import "LKPreset.h"
-#import <SocketRocket/SRWebSocket.h>
+#import "LKSocketSession.h"
+#import <AFNetworking/AFNetworking.h>
 
 static id _activeSession = nil;
 
-@interface LKSession () <SRWebSocketDelegate>
+@interface LKSession ()
 
-@property (nonatomic) SRWebSocket *socket;
+@property (nonatomic) AFHTTPSessionManager *sessionManager;
+@property (nonatomic) LKSocketSession *socketSession;
+@property (nonatomic) NSString *authToken;
 
-@property (nonatomic, copy) void (^socketDidOpenBlock)();
 @property (nonatomic, copy) void (^didReceiveStateBlock)(LKResponse *response);
 @property (nonatomic, copy) void (^didReceiveDevicesBlock)(LKResponse *response);
 @property (nonatomic, copy) void (^didReceivePresetsBlock)(LKResponse *response);
@@ -38,9 +40,8 @@ static id _activeSession = nil;
 - (instancetype)initWithServer:(NSURL *)url {
     self = [super init];
     if (self) {
+        _sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:url];
         _activeSession = self;
-        self.socket = [[SRWebSocket alloc] initWithURL:url];
-        self.socket.delegate = self;
     }
     return self;
 }
@@ -48,18 +49,30 @@ static id _activeSession = nil;
 #pragma mark - Getters
 
 - (NSURL *)serverURL {
-    return self.socket.url;
+    return self.sessionManager.baseURL;
 }
 
 #pragma mark - SocketRocket methods
 
-- (void)openSessionWithCompletion:(void (^)())completion {
-    self.socketDidOpenBlock = completion;
-    [self.socket open];
+- (void)openSessionWithUsername:(NSString *)username password:(NSString *)password completion:(void (^)())completion {
+    NSDictionary *params = @{@"username": username, @"password": password};
+    [self.sessionManager POST:@"api/v1/sessions" parameters:params success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+        self.authToken = responseObject[@"token"];
+        NSString *str = [self.serverURL absoluteString];
+        NSInteger colon = [str rangeOfString:@":"].location;
+        if (colon != NSNotFound) {
+            str = [str substringFromIndex:colon];
+            str = [@"ws" stringByAppendingString:str];
+        }
+        self.socketSession = [[LKSocketSession alloc] initWithServer:[[NSURL URLWithString:str] URLByAppendingPathComponent:@"websocket"]];
+        [self.socketSession openSessionWithCompletion:completion];
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+    }];
 }
 
 - (void)sendEvent:(LKEvent *)event {
-    [self.socket send:event.bodyString];
+    [self.socketSession sendEvent:event];
 }
 
 - (void)executePreset:(LKPreset *)preset {
@@ -70,74 +83,23 @@ static id _activeSession = nil;
 #pragma mark - Convenience methods
 
 - (void)queryStateWithBlock:(void (^)(LKResponse *response))block {
-    self.didReceiveStateBlock = block;
-    LKEvent *event = [LKEvent eventWithType:LKEventTypeQuery];
-    [self sendEvent:event];
-}
-
-- (void)queryX10DevicesWithBlock:(void (^)(LKResponse *response))block {
-    self.didReceiveDevicesBlock = block;
-    LKEvent *event = [LKEvent eventWithType:LKEventTypeGetX10Devices];
-    [self sendEvent:event];
-}
-
-- (void)queryPresetsWithBlock:(void (^)(LKResponse *))block {
-    self.didReceivePresetsBlock = block;
-    LKEvent *event = [LKEvent eventWithType:LKEventTypeQueryPresets];
-    [self sendEvent:event];
-}
-
-- (void)queryScheduleWithBlock:(void (^)(LKResponse *))block {
-    self.didReceiveScheduleBlock = block;
-    LKEvent *event = [LKEvent eventWithType:LKEventTypeQuerySchedule];
-    [self sendEvent:event];
-}
-
-#pragma mark - SocketRocket delegate
-
-- (void)webSocketDidOpen:(SRWebSocket *)webSocket {
-    if (self.socketDidOpenBlock) {
-        self.socketDidOpenBlock();
-    }
-    self.socketDidOpenBlock = nil;
-}
-
-- (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error {
     
 }
 
-- (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if([message hasPrefix:@"currentState"]) {
-            NSString *command  = [message stringByReplacingOccurrencesOfString:@"currentState: " withString:@""];
-            LKResponse *response = [LKResponse responseWithBodyString:command];
-            if (self.didReceiveStateBlock) {
-                self.didReceiveStateBlock(response);
-            }
-            self.didReceiveStateBlock = nil;
-        } else {
-            LKResponse *response = [LKResponse responseWithBodyString:message];
-            if(response.event.type == LKEventTypeGetX10Devices) {
-                if (self.didReceiveDevicesBlock) {
-                    self.didReceiveDevicesBlock(response);
-                }
-                self.didReceiveDevicesBlock = nil;
-            } else if (response.event.type == LKEventTypeQueryPresets) {
-                if (self.didReceivePresetsBlock) {
-                    self.didReceivePresetsBlock(response);
-                }
-                self.didReceivePresetsBlock = nil;
-            } else if (response.event.type == LKEventTypeQuerySchedule) {
-                if (self.didReceiveScheduleBlock) {
-                    self.didReceiveScheduleBlock(response);
-                }
-                self.didReceiveScheduleBlock = nil;
-            }
-        }
-    });
+- (void)queryX10DevicesWithBlock:(void (^)(LKResponse *response))block {
+    [self.sessionManager GET:@"api/v1/users/devices" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+        LKResponse *response = [LKResponse responseWithDevices:responseObject[LKDevicesKey]];
+        block(response);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+    }];
 }
 
-- (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
+- (void)queryPresetsWithBlock:(void (^)(LKResponse *))block {
+    
+}
+
+- (void)queryScheduleWithBlock:(void (^)(LKResponse *))block {
     
 }
 

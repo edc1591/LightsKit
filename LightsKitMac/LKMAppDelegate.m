@@ -13,6 +13,7 @@
 
 @property (nonatomic) LKSession *session;
 @property (nonatomic) NSArray *presets;
+@property (nonatomic) NSArray *devices;
 
 @end
 
@@ -21,17 +22,17 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
     self.statusLabel.stringValue = @"Status: Connecting...";
-    self.session = [[LKSession alloc] initWithServer:[NSURL URLWithString:@"ws://evancoleman.net:9000"]];
-    [self.session openSessionWithCompletion:^{
+    self.session = [[LKSession alloc] initWithServer:[NSURL URLWithString:@"http://example.com"]];
+    [self.session openSessionWithUsername:@"" password:@"" completion:^{
         self.statusLabel.stringValue = @"Status: Connected!";
     }];
 }
 
 - (IBAction)getState:(id)sender {
-    [self.session queryStateWithBlock:^(LKResponse *response) {
-        LKEvent *event = response.event;
-        self.colorWell.color = [NSColor colorWithCalibratedRed:event.color.red green:event.color.green blue:event.color.blue alpha:1];
-    }];
+//    [self.session queryStateWithBlock:^(LKResponse *response) {
+//        LKEvent *event = response.event;
+//        self.colorWell.color = [NSColor colorWithCalibratedRed:event.color.red green:event.color.green blue:event.color.blue alpha:1];
+//    }];
 }
 
 - (IBAction)setColor:(id)sender {
@@ -44,6 +45,11 @@
 
 - (IBAction)getDevices:(id)sender {
     [self.session queryX10DevicesWithBlock:^(LKResponse *response) {
+        self.devices = response.objects;
+        [self.devicesPopup removeAllItems];
+        [self.devices enumerateObjectsUsingBlock:^(LKX10Device *obj, NSUInteger idx, BOOL *stop) {
+            [self.devicesPopup addItemWithTitle:obj.name];
+        }];
         NSLog(@"%@", response.objects);
     }];
 }
@@ -68,6 +74,16 @@
 - (IBAction)executePreset:(id)sender {
     LKPreset *preset = self.presets[[self.presetsPopup indexOfSelectedItem]];
     [self.session executePreset:preset];
+}
+
+- (IBAction)on:(id)sender {
+    LKX10Device *device = self.devices[[self.devicesPopup indexOfSelectedItem]];
+    [self.session sendEvent:[LKEvent x10EventWithDevice:device command:LKX10CommandOn]];
+}
+
+- (IBAction)off:(id)sender {
+    LKX10Device *device = self.devices[[self.devicesPopup indexOfSelectedItem]];
+    [self.session sendEvent:[LKEvent x10EventWithDevice:device command:LKX10CommandOff]];
 }
 
 @end

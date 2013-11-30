@@ -21,7 +21,7 @@
 @implementation LKX10Device
 
 + (LKX10Device *)deviceWithDictionary:(NSDictionary *)deviceDict {
-    return [LKX10Device deviceWithID:[deviceDict[LKX10DeviceKey] integerValue]
+    return [LKX10Device deviceWithID:[deviceDict[LKX10DeviceIDKey] integerValue]
                            houseCode:[deviceDict[LKX10HouseCodeKey] integerValue]
                                 name:deviceDict[LKNameKey]
                                 type:[deviceDict[LKX10DeviceTypeKey] integerValue]];

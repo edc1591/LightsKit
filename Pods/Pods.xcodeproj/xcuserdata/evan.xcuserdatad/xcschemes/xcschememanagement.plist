@@ -4,15 +4,35 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-SocketRocket.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>D58A580CBD744EF587686BB1</key>
+		<key>31FA6FB29A654F6BA5B2399F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4D9D93A0540A4919BC1D34AE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C71AD352402A4211A9A48C6D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

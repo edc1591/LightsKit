@@ -12,11 +12,10 @@
 
 @interface LKResponse : NSObject
 
-@property (nonatomic, readonly) NSString *bodyString;
 @property (nonatomic, readonly) LKEvent *event;
 @property (nonatomic, readonly) NSArray *objects;
 @property (nonatomic, readonly) NSError *error;
 
-+ (instancetype)responseWithBodyString:(NSString *)body;
++ (instancetype)responseWithDevices:(NSArray *)devices;
 
 @end
