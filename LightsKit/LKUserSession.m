@@ -28,7 +28,7 @@
 - (void)usernameHasPassword:(NSString *)username completion:(void (^)(BOOL hasPassword))completion {
     NSDictionary *params = @{@"username": username};
     [self.sessionManager GET:@"api/v1/users/has_password" parameters:params success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
-        BOOL hasPassword = [responseObject[@"hasPassword"] boolValue];
+        BOOL hasPassword = [responseObject[@"has_password"] boolValue];
         completion(hasPassword);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%@", [error localizedDescription]);
