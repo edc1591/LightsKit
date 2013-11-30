@@ -77,7 +77,7 @@ static id _activeSession = nil;
 }
 
 - (void)resumeSessionWithCompletion:(void (^)())completion {
-    [self.socketSession openSessionWithCompletion:completion];
+    [self.socketSession resumeSessionWithCompletion:completion];
 }
 
 - (void)sendEvent:(LKEvent *)event {
