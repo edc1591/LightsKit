@@ -15,6 +15,7 @@ static NSString * const LKX10CommandKey = @"command";
 static NSString * const LKX10HouseCodeKey = @"houseCode";
 static NSString * const LKX10DeviceIDKey = @"deviceId";
 static NSString * const LKX10DeviceKey = @"device";
+static NSString * const LKX10DeviceZoneKey = @"zone";
 static NSString * const LKNameKey = @"name";
 static NSString * const LKX10DeviceTypeKey = @"type";
 static NSString * const LKSpeedKey = @"speed";

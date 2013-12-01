@@ -15,6 +15,7 @@
 @property (nonatomic) NSInteger houseCode;
 @property (nonatomic) LKX10DeviceType type;
 @property (nonatomic) NSString *name;
+@property (nonatomic) NSInteger zone;
 
 @end
 
@@ -24,15 +25,17 @@
     return [LKX10Device deviceWithID:[deviceDict[LKX10DeviceIDKey] integerValue]
                            houseCode:[deviceDict[LKX10HouseCodeKey] integerValue]
                                 name:deviceDict[LKNameKey]
-                                type:[deviceDict[LKX10DeviceTypeKey] integerValue]];
+                                type:[deviceDict[LKX10DeviceTypeKey] integerValue]
+                                zone:[deviceDict[LKX10DeviceZoneKey] integerValue]];
 }
 
-+ (LKX10Device *)deviceWithID:(NSInteger)deviceID houseCode:(NSInteger)houseCode name:(NSString *)name type:(LKX10DeviceType)type {
++ (LKX10Device *)deviceWithID:(NSInteger)deviceID houseCode:(NSInteger)houseCode name:(NSString *)name type:(LKX10DeviceType)type zone:(NSInteger)zone {
     LKX10Device *device = [[LKX10Device alloc] init];
     device.deviceID = deviceID;
     device.houseCode = houseCode;
     device.name = name;
     device.type = type;
+    device.zone = zone;
     return device;
 }
 

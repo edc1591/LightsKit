@@ -102,6 +102,7 @@
         eventDict[LKX10DeviceKey] = @(self.device.deviceID);
         eventDict[LKX10HouseCodeKey] = @(self.device.houseCode);
         eventDict[LKX10CommandKey] = @(self.command);
+        eventDict[LKX10DeviceZoneKey] = @(self.device.zone);
     } else if (self.type == LKEventTypeExecutePreset) {
         eventDict[LKIndexKey] = @(self.index);
     } else {
