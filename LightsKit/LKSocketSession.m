@@ -52,6 +52,7 @@ static id _activeSession = nil;
 }
 
 - (void)closeSession {
+    self.socket.delegate = nil;
     [self.socket close];
     self.socket = nil;
 }
