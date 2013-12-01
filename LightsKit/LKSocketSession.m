@@ -88,10 +88,15 @@ static id _activeSession = nil;
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        //LKResponse *response = [LKResponse responseWithBodyString:message];
-        
-    });
+    NSData *bodyData = [message dataUsingEncoding:NSUTF8StringEncoding];
+    NSArray *responseObject = [NSJSONSerialization JSONObjectWithData:bodyData options:NSJSONReadingAllowFragments error:nil];
+    NSString *command = [[responseObject firstObject] firstObject];
+    if ([command isEqualToString:@"websocket_rails.ping"]) {
+        NSArray *sendObject = @[@"websocket_rails.pong", @{@"data":@""}];
+        NSData *data = [NSJSONSerialization dataWithJSONObject:sendObject options:NSJSONWritingPrettyPrinted error:nil];
+        NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        [webSocket send:string];
+    }
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
