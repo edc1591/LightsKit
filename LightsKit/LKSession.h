@@ -25,9 +25,10 @@
 - (void)sendEventCollection:(LKEventCollection *)collection;
 - (void)executePreset:(LKPreset *)preset;
 
-- (void)queryStateWithBlock:(void (^)(LKResponse *response))block;
-- (void)queryX10DevicesWithBlock:(void (^)(LKResponse *response))block;
-- (void)queryPresetsWithBlock:(void (^)(LKResponse *response))block;
-- (void)queryScheduleWithBlock:(void (^)(LKResponse *response))block;
+- (void)queryStateWithBlock:(void (^)(LKEvent *state))block;
+- (void)queryX10DevicesWithBlock:(void (^)(NSArray *devices))block;
+- (void)queryPresetsWithBlock:(void (^)(NSArray *presets))block;
+- (void)queryScheduleWithBlock:(void (^)(NSArray *events))block;
+- (void)queryAnimationsWithBlock:(void (^)(NSArray *animations))block;
 
 @end

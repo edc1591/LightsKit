@@ -44,19 +44,19 @@
 }
 
 - (IBAction)getDevices:(id)sender {
-    [self.session queryX10DevicesWithBlock:^(LKResponse *response) {
-        self.devices = response.objects;
+    [self.session queryX10DevicesWithBlock:^(NSArray *devices) {
+        self.devices = devices;
         [self.devicesPopup removeAllItems];
         [self.devices enumerateObjectsUsingBlock:^(LKX10Device *obj, NSUInteger idx, BOOL *stop) {
             [self.devicesPopup addItemWithTitle:obj.name];
         }];
-        NSLog(@"%@", response.objects);
+        NSLog(@"%@", devices);
     }];
 }
 
 - (IBAction)getPresets:(id)sender {
-    [self.session queryPresetsWithBlock:^(LKResponse *response) {
-        self.presets = response.objects;
+    [self.session queryPresetsWithBlock:^(NSArray *presets) {
+        self.presets = presets;
         [self.presetsPopup removeAllItems];
         [self.presets enumerateObjectsUsingBlock:^(LKPreset *obj, NSUInteger idx, BOOL *stop) {
             [self.presetsPopup addItemWithTitle:obj.name];
@@ -66,8 +66,8 @@
 }
 
 - (IBAction)getSchedule:(id)sender {
-    [self.session queryScheduleWithBlock:^(LKResponse *response) {
-        NSLog(@"%@", response.objects);
+    [self.session queryScheduleWithBlock:^(NSArray *events) {
+        NSLog(@"%@", events);
     }];
 }
 

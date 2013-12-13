@@ -95,25 +95,32 @@ static id _activeSession = nil;
 
 #pragma mark - Convenience methods
 
-- (void)queryStateWithBlock:(void (^)(LKResponse *response))block {
+- (void)queryStateWithBlock:(void (^)(LKEvent *event))block {
     
 }
 
-- (void)queryX10DevicesWithBlock:(void (^)(LKResponse *response))block {
+- (void)queryX10DevicesWithBlock:(void (^)(NSArray *devices))block {
     [self.sessionManager GET:@"api/v1/users/devices" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
-        LKResponse *response = [LKResponse responseWithDevices:responseObject[LKDevicesKey]];
-        block(response);
+        block(responseObject[@"devices"]);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
     }];
 }
 
-- (void)queryPresetsWithBlock:(void (^)(LKResponse *))block {
+- (void)queryPresetsWithBlock:(void (^)(NSArray *))block {
     
 }
 
-- (void)queryScheduleWithBlock:(void (^)(LKResponse *))block {
+- (void)queryScheduleWithBlock:(void (^)(NSArray *))block {
     
+}
+
+- (void)queryAnimationsWithBlock:(void (^)(NSArray *))block {
+    [self.sessionManager GET:@"api/v1/colors/animations" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+        block(responseObject[@"animations"]);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+    }];
 }
 
 @end
