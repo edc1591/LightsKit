@@ -105,9 +105,11 @@ static id _activeSession = nil;
         [webSocket send:string];
     } else if ([command isEqualToString:@"current_state"]) {
         NSDictionary *dataDict = [[responseObject firstObject] objectAtIndex:1];
-        LKEvent *event = [LKEvent eventFromDictionary:dataDict[@"data"]];
-        if (self.currentStateBlock) {
-            self.currentStateBlock(event);
+        if ([dataDict[@"data"] isKindOfClass:[NSDictionary class]]) {
+            LKEvent *event = [LKEvent eventFromDictionary:dataDict[@"data"]];
+            if (self.currentStateBlock) {
+                self.currentStateBlock(event);
+            }
         }
     }
 }
