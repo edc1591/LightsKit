@@ -13,6 +13,7 @@
 #import "LKPreset.h"
 #import "LKSocketSession.h"
 #import "LKEventCollection.h"
+#import "LKX10Device.h"
 #import <AFNetworking/AFNetworking.h>
 
 static id _activeSession = nil;
@@ -101,7 +102,11 @@ static id _activeSession = nil;
 
 - (void)queryX10DevicesWithBlock:(void (^)(NSArray *devices))block {
     [self.sessionManager GET:@"api/v1/users/devices" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
-        block(responseObject[@"devices"]);
+        NSMutableArray *devices = [NSMutableArray array];
+        for (NSDictionary *deviceDict in responseObject[@"devices"]) {
+            [devices addObject:[LKX10Device deviceWithDictionary:deviceDict]];
+        }
+        block([devices copy]);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
     }];
