@@ -14,6 +14,7 @@
 #import "LKSocketSession.h"
 #import "LKEventCollection.h"
 #import "LKX10Device.h"
+#import "LKAnimation.h"
 #import <AFNetworking/AFNetworking.h>
 
 static id _activeSession = nil;
@@ -122,7 +123,11 @@ static id _activeSession = nil;
 
 - (void)queryAnimationsWithBlock:(void (^)(NSArray *))block {
     [self.sessionManager GET:@"api/v1/colors/animations" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
-        block(responseObject[@"animations"]);
+        NSMutableArray *devices = [NSMutableArray array];
+        for (NSDictionary *dict in responseObject[@"animations"]) {
+            [devices addObject:[LKAnimation animationWithDictionary:dict]];
+        }
+        block([devices copy]);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
     }];
