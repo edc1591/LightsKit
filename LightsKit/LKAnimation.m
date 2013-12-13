@@ -13,7 +13,7 @@
 + (instancetype)animationWithDictionary:(NSDictionary *)dict {
     LKAnimation *animation = [[LKAnimation alloc] init];
     animation.name = dict[@"name"];
-    animation.animationId = [dict[@"id"] integerValue];
+    animation.animationId = [dict[@"animationId"] integerValue];
     animation.speed = [dict[@"speed"] integerValue];
     animation.brightness = [dict[@"brightness"] integerValue];
     return animation;
