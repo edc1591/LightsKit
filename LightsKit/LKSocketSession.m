@@ -22,6 +22,7 @@ static id _activeSession = nil;
 @property (nonatomic) NSURL *serverURL;
 
 @property (nonatomic, copy) void (^socketDidOpenBlock)();
+@property (nonatomic, copy) void (^currentStateBlock)(LKEvent *event);
 
 @end
 
@@ -73,7 +74,12 @@ static id _activeSession = nil;
 
 #pragma mark - Convenience methods
 
-
+- (void)queryStateWithCompletion:(void (^)(LKEvent *))completion {
+    NSArray *array = @[@"current_state", @{@"data": @""}];
+    NSData *data = [NSJSONSerialization dataWithJSONObject:array options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    [self.socket send:string];
+}
 
 #pragma mark - SocketRocket delegate
 
@@ -97,6 +103,12 @@ static id _activeSession = nil;
         NSData *data = [NSJSONSerialization dataWithJSONObject:sendObject options:NSJSONWritingPrettyPrinted error:nil];
         NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         [webSocket send:string];
+    } else if ([command isEqualToString:@"current_state"]) {
+        NSDictionary *dataDict = [[responseObject firstObject] objectAtIndex:1];
+        LKEvent *event = dataDict[@"data"];
+        if (self.currentStateBlock) {
+            self.currentStateBlock(event);
+        }
     }
 }
 

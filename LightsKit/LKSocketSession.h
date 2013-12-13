@@ -21,6 +21,8 @@
 - (void)closeSession;
 - (void)resumeSessionWithCompletion:(void (^)())completion;
 
+- (void)queryStateWithCompletion:(void (^)(LKEvent *event))completion;
+
 - (void)sendEvent:(LKEvent *)event;
 - (void)sendEventCollection:(LKEventCollection *)collection;
 

@@ -98,7 +98,7 @@ static id _activeSession = nil;
 #pragma mark - Convenience methods
 
 - (void)queryStateWithBlock:(void (^)(LKEvent *event))block {
-    
+    [self.socketSession queryStateWithCompletion:block];
 }
 
 - (void)queryX10DevicesWithBlock:(void (^)(NSArray *devices))block {
