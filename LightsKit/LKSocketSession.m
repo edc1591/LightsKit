@@ -75,6 +75,7 @@ static id _activeSession = nil;
 #pragma mark - Convenience methods
 
 - (void)queryStateWithCompletion:(void (^)(LKEvent *))completion {
+    self.currentStateBlock = completion;
     NSArray *array = @[@"current_state", @{@"data": @""}];
     NSData *data = [NSJSONSerialization dataWithJSONObject:array options:NSJSONWritingPrettyPrinted error:nil];
     NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
