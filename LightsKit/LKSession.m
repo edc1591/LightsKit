@@ -105,6 +105,21 @@ static id _activeSession = nil;
     }];
 }
 
+- (void)updateEvent:(LKScheduledEvent *)event withCompletion:(void (^)())completion {
+    NSMutableDictionary *params = [@{@"auth_token": self.authToken} mutableCopy];
+    params[@"schedule"] = [event dictionaryRepresentation];
+    NSString *urlString = [NSString stringWithFormat:@"api/v1/schedule/%li", event.scheduleId];
+    [self.sessionManager POST:urlString parameters:params success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+        [self.socketSession notifyServerOfScheduleUpdateInZone:event.zone withCompletion:^{
+            if (completion) {
+                completion();
+            }
+        }];
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"%@", [error localizedDescription]);
+    }];
+}
+
 - (void)executePreset:(LKPreset *)preset {
     LKEvent *event = [LKEvent presetEventAtIndex:preset.index];
     [self sendEvent:event];
