@@ -60,6 +60,7 @@ typedef NS_ENUM(NSUInteger, LKX10Command) {
 @property (nonatomic, readonly) NSUInteger index;
 @property (nonatomic, readonly) CGFloat speed;
 @property (nonatomic, readonly) CGFloat brightness;
+@property (nonatomic, readonly) NSInteger zone;
 
 @property (nonatomic, readonly) NSString *bodyString;
 @property (nonatomic, readonly) NSDictionary *dictionaryRepresentation;

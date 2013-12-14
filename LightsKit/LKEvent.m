@@ -19,6 +19,7 @@
 @property (nonatomic) NSUInteger index;
 @property (nonatomic) CGFloat speed;
 @property (nonatomic) CGFloat brightness;
+@property (nonatomic) NSInteger zone;
 
 @end
 
@@ -60,6 +61,7 @@
     LKEvent *event = [[self alloc] init];
     event.type = LKEventTypeSolid;
     event.color = color;
+    event.zone = 1;
     return event;
 }
 
@@ -68,6 +70,7 @@
     event.type = type;
     event.speed = speed;
     event.brightness = brightness;
+    event.zone = 1;
     return event;
 }
 
@@ -76,6 +79,7 @@
     event.type = LKEventTypeX10Command;
     event.device = device;
     event.command = command;
+    event.zone = device.zone;
     return event;
 }
 
