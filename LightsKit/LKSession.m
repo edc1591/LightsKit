@@ -15,6 +15,7 @@
 #import "LKEventCollection.h"
 #import "LKX10Device.h"
 #import "LKAnimation.h"
+#import "LKScheduledEvent.h"
 #import <AFNetworking/AFNetworking.h>
 
 static id _activeSession = nil;
@@ -88,6 +89,20 @@ static id _activeSession = nil;
 
 - (void)sendEventCollection:(LKEventCollection *)collection {
     [self.socketSession sendEventCollection:collection];
+}
+
+- (void)scheduleEvent:(LKScheduledEvent *)event withCompletion:(void (^)())completion {
+    NSMutableDictionary *params = [[event dictionaryRepresentation] mutableCopy];
+    params[@"auth_token"] = self.authToken;
+    [self.sessionManager POST:@"api/v1/schedule" parameters:params success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+        [self.socketSession notifyServerOfScheduleUpdateInZone:event.zone withCompletion:^{
+            if (completion) {
+                completion();
+            }
+        }];
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"%@", [error localizedDescription]);
+    }];
 }
 
 - (void)executePreset:(LKPreset *)preset {

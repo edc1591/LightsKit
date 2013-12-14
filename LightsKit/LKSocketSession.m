@@ -23,6 +23,7 @@ static id _activeSession = nil;
 
 @property (nonatomic, copy) void (^socketDidOpenBlock)();
 @property (nonatomic, copy) void (^currentStateBlock)(LKEvent *event);
+@property (nonatomic, copy) void (^scheduleUpdateBlock)();
 
 @end
 
@@ -72,6 +73,14 @@ static id _activeSession = nil;
     [self.socket send:collection.bodyString];
 }
 
+- (void)notifyServerOfScheduleUpdateInZone:(NSInteger)zone withCompletion:(void (^)())completion {
+    self.scheduleUpdateBlock = completion;
+    NSArray *array = @[@"schedule_updated", @{@"data": @{@"zone": @(zone)}}];
+    NSData *data = [NSJSONSerialization dataWithJSONObject:array options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    [self.socket send:string];
+}
+
 #pragma mark - Convenience methods
 
 - (void)queryStateWithCompletion:(void (^)(LKEvent *))completion {
@@ -111,6 +120,10 @@ static id _activeSession = nil;
             if (self.currentStateBlock) {
                 self.currentStateBlock(event);
             }
+        }
+    } else if ([command isEqualToString:@"schedule_updated"]) {
+        if (self.scheduleUpdateBlock) {
+            self.scheduleUpdateBlock();
         }
     }
 }

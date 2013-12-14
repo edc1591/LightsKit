@@ -21,5 +21,6 @@ static NSString * const LKTimeZoneKey = @"timeZone";
 @property (nonatomic) NSTimeZone *timeZone;
 
 - (void)setDate:(NSDate *)date timeZone:(NSTimeZone *)timeZone andRepeat:(NSString *)repeat;
+- (NSDictionary *)dictionaryRepresentation;
 
 @end

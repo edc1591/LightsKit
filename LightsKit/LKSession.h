@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class LKEvent, LKResponse, LKPreset, LKEventCollection;
+@class LKEvent, LKScheduledEvent, LKResponse, LKPreset, LKEventCollection;
 
 @interface LKSession : NSObject
 
@@ -23,6 +23,7 @@
 
 - (void)sendEvent:(LKEvent *)event;
 - (void)sendEventCollection:(LKEventCollection *)collection;
+- (void)scheduleEvent:(LKScheduledEvent *)event withCompletion:(void (^)())completion;
 - (void)executePreset:(LKPreset *)preset;
 
 - (void)queryStateWithBlock:(void (^)(LKEvent *state))block;

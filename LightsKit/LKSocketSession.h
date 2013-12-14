@@ -25,5 +25,6 @@
 
 - (void)sendEvent:(LKEvent *)event;
 - (void)sendEventCollection:(LKEventCollection *)collection;
+- (void)notifyServerOfScheduleUpdateInZone:(NSInteger)zone withCompletion:(void (^)())completion;
 
 @end
