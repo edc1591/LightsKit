@@ -45,7 +45,6 @@
     dict[LKStateKey] = @(self.state);
     dict[LKTimeZoneKey] = [self.timeZone name];
     dict[@"eventId"] = @(self.type);
-    [dict removeObjectForKey:LKEventTypeKey];
     [dict addEntriesFromDictionary:[super dictionaryRepresentation]];
     return dict;
 }
