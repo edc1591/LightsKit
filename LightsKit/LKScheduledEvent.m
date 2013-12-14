@@ -44,6 +44,7 @@
     dict[LKDateKey] = @([self.date timeIntervalSince1970]);
     dict[LKStateKey] = @(self.state);
     dict[LKTimeZoneKey] = [self.timeZone name];
+    dict[@"eventId"] = @(self.type);
     [dict addEntriesFromDictionary:[super dictionaryRepresentation]];
     return dict;
 }
