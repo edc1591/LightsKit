@@ -133,7 +133,15 @@ static id _activeSession = nil;
 }
 
 - (void)queryScheduleWithBlock:(void (^)(NSArray *))block {
-    
+    [self.sessionManager GET:@"api/v1/schedule" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+        NSMutableArray *events = [NSMutableArray array];
+        for (NSDictionary *eventDict in responseObject[@"events"]) {
+            [events addObject:[LKScheduledEvent eventFromDictionary:eventDict]];
+        }
+        block([events copy]);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"%@", [error localizedDescription]);
+    }];
 }
 
 - (void)queryAnimationsWithBlock:(void (^)(NSArray *))block {
