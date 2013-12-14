@@ -102,6 +102,7 @@
     
     if (self.type == LKEventTypeSolid) {
         eventDict[LKColorKey] = self.color.rgb;
+        eventDict[LKX10DeviceZoneKey] = @(self.zone);
     } else if (self.type == LKEventTypeX10Command) {
         eventDict[LKX10DeviceKey] = @(self.device.deviceID);
         eventDict[LKX10HouseCodeKey] = @(self.device.houseCode);
@@ -112,6 +113,7 @@
     } else {
         eventDict[LKSpeedKey] = @(self.speed);
         eventDict[LKBrightnessKey] = @(self.brightness);
+        eventDict[LKX10DeviceZoneKey] = @(self.zone);
     }
     return eventDict;
 }
