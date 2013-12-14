@@ -44,7 +44,7 @@
     } else if (type == LKEventTypeX10Command) {
         LKX10Device *device = [LKX10Device deviceWithDictionary:dictionary];
         return [self x10EventWithDevice:device command:[dictionary[LKX10CommandKey] integerValue]];
-    } else if (dictionary[LKSpeedKey] || dictionary[LKBrightnessKey]) {
+    } else if (dictionary[LKSpeedKey] != (id)[NSNull null] || dictionary[LKBrightnessKey] != (id)[NSNull null]) {
         return [self animationEventWithType:type speed:[dictionary[LKSpeedKey] floatValue] brightness:[dictionary[LKBrightnessKey] floatValue]];
     } else {
         return [self eventWithType:type];
