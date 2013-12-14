@@ -11,6 +11,7 @@
 @interface LKScheduledEvent ()
 
 @property (nonatomic) LKEventType type;
+@property (nonatomic) NSInteger scheduleId;
 
 @end
 
@@ -25,6 +26,7 @@
     event.date = [NSDate dateWithTimeIntervalSince1970:[dictionary[LKDateKey] doubleValue]];
     event.state = [dictionary[LKStateKey] boolValue];
     event.timeZone = [NSTimeZone timeZoneWithName:dictionary[LKTimeZoneKey]];
+    event.scheduleId = [dictionary[@"id"] integerValue];
     return event;
 }
 

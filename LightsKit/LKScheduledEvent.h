@@ -15,6 +15,7 @@ static NSString * const LKTimeZoneKey = @"timeZone";
 
 @interface LKScheduledEvent : LKEvent
 
+@property (nonatomic, readonly) NSInteger scheduleId;
 @property (nonatomic) NSArray *repeat;
 @property (nonatomic) NSDate *date;
 @property (nonatomic) BOOL state;
