@@ -25,7 +25,7 @@
 
 #pragma mark - Public methods
 
-- (void)setDate:(NSDate *)date timeZone:(NSTimeZone *)timeZone andRepeat:(NSString *)repeat {
+- (void)setDate:(NSDate *)date timeZone:(NSTimeZone *)timeZone andRepeat:(NSArray *)repeat {
     self.date = date;
     self.timeZone = timeZone;
     self.repeat = repeat;

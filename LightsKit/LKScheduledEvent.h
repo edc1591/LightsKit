@@ -15,12 +15,12 @@ static NSString * const LKTimeZoneKey = @"timeZone";
 
 @interface LKScheduledEvent : LKEvent
 
-@property (nonatomic) NSString *repeat;
+@property (nonatomic) NSArray *repeat;
 @property (nonatomic) NSDate *date;
 @property (nonatomic) BOOL state;
 @property (nonatomic) NSTimeZone *timeZone;
 
-- (void)setDate:(NSDate *)date timeZone:(NSTimeZone *)timeZone andRepeat:(NSString *)repeat;
+- (void)setDate:(NSDate *)date timeZone:(NSTimeZone *)timeZone andRepeat:(NSArray *)repeat;
 - (NSDictionary *)dictionaryRepresentation;
 
 @end
