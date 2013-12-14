@@ -17,6 +17,8 @@
 @implementation LKScheduledEvent
 
 + (instancetype)eventFromDictionary:(NSDictionary *)dictionary {
+    NSMutableDictionary *mutDict = [dictionary mutableCopy];
+    mutDict[@"event"] = dictionary[@"eventId"];
     LKScheduledEvent *event = [super eventFromDictionary:dictionary];
     event.type = [dictionary[@"eventId"] integerValue];
     event.repeat = dictionary[LKRepeatKey];
