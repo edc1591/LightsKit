@@ -19,7 +19,7 @@
 + (instancetype)eventFromDictionary:(NSDictionary *)dictionary {
     NSMutableDictionary *mutDict = [dictionary mutableCopy];
     mutDict[@"event"] = dictionary[@"eventId"];
-    LKScheduledEvent *event = [super eventFromDictionary:dictionary];
+    LKScheduledEvent *event = [super eventFromDictionary:mutDict];
     event.type = [dictionary[@"eventId"] integerValue];
     event.repeat = dictionary[LKRepeatKey];
     event.date = [NSDate dateWithTimeIntervalSince1970:[dictionary[LKDateKey] doubleValue]];
