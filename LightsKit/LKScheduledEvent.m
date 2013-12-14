@@ -10,12 +10,15 @@
 
 @interface LKScheduledEvent ()
 
+@property (nonatomic) LKEventType type;
+
 @end
 
 @implementation LKScheduledEvent
 
 + (instancetype)eventFromDictionary:(NSDictionary *)dictionary {
     LKScheduledEvent *event = [super eventFromDictionary:dictionary];
+    event.type = [dictionary[@"eventId"] integerValue];
     event.repeat = dictionary[LKRepeatKey];
     event.date = [NSDate dateWithTimeIntervalSince1970:[dictionary[LKDateKey] doubleValue]];
     event.state = [dictionary[LKStateKey] boolValue];
