@@ -18,10 +18,7 @@
 @implementation LKScheduledEvent
 
 + (instancetype)eventFromDictionary:(NSDictionary *)dictionary {
-    NSMutableDictionary *mutDict = [dictionary mutableCopy];
-    mutDict[@"event"] = dictionary[@"eventId"];
-    LKScheduledEvent *event = [super eventFromDictionary:mutDict];
-    event.type = [dictionary[@"eventId"] integerValue];
+    LKScheduledEvent *event = [super eventFromDictionary:dictionary];
     event.repeat = dictionary[LKRepeatKey];
     event.date = [NSDate dateWithTimeIntervalSince1970:[dictionary[LKDateKey] doubleValue]];
     event.state = [dictionary[LKStateKey] boolValue];
@@ -44,7 +41,6 @@
     dict[LKDateKey] = @([self.date timeIntervalSince1970]);
     dict[LKStateKey] = @(self.state);
     dict[LKTimeZoneKey] = [self.timeZone name];
-    dict[@"eventId"] = @(self.type);
     [dict addEntriesFromDictionary:[super dictionaryRepresentation]];
     return dict;
 }

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-static NSString * const LKEventTypeKey = @"event";
+static NSString * const LKEventTypeKey = @"eventType";
 static NSString * const LKColorKey = @"color";
 static NSString * const LKDevicesKey = @"devices";
 static NSString * const LKX10CommandKey = @"command";
