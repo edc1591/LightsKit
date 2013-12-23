@@ -58,10 +58,10 @@ static id _activeSession = nil;
 
 #pragma mark - SocketRocket methods
 
-- (void)openSessionWithUsername:(NSString *)username password:(NSString *)password completion:(void (^)())completion {
+- (void)openSessionWithUsername:(NSString *)username password:(NSString *)password completion:(void (^)(NSDictionary *userDict))completion {
     NSDictionary *params = @{@"username": username, @"password": password};
     [self.sessionManager POST:@"api/v1/sessions" parameters:params success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
-        self.authToken = responseObject[@"token"];
+        self.authToken = responseObject[@"auth"][@"token"];
         NSString *str = [self.serverURL absoluteString];
         NSInteger colon = [str rangeOfString:@":"].location;
         if (colon != NSNotFound) {
@@ -69,7 +69,9 @@ static id _activeSession = nil;
             str = [@"ws" stringByAppendingString:str];
         }
         self.socketSession = [[LKSocketSession alloc] initWithServer:[[NSURL URLWithString:str] URLByAppendingPathComponent:@"websocket"]];
-        [self.socketSession openSessionWithCompletion:completion];
+        [self.socketSession openSessionWithCompletion:^{
+            completion(responseObject);
+        }];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
     }];
