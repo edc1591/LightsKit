@@ -32,5 +32,6 @@
 - (void)queryPresetsWithBlock:(void (^)(NSArray *presets))block;
 - (void)queryScheduleWithBlock:(void (^)(NSArray *events))block;
 - (void)queryAnimationsWithBlock:(void (^)(NSArray *animations))block;
+- (void)queryColorPermissionsWithBlock:(void (^)(NSArray *colorZones))block;
 
 @end

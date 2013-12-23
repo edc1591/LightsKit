@@ -171,4 +171,12 @@ static id _activeSession = nil;
     }];
 }
 
+- (void)queryColorPermissionsWithBlock:(void (^)(NSArray *))block {
+    [self.sessionManager GET:@"api/v1/users/color_zones" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+        block(responseObject[@"color_zones"]);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+    }];
+}
+
 @end
