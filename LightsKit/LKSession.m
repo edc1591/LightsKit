@@ -123,8 +123,8 @@ static id _activeSession = nil;
 }
 
 - (void)executePreset:(LKPreset *)preset {
-    LKEvent *event = [LKEvent presetEventAtIndex:preset.index];
-    [self sendEvent:event];
+    LKEventCollection *collection = [LKEventCollection collectionWithEvents:preset.actions];
+    [self sendEventCollection:collection];
 }
 
 #pragma mark - Convenience methods

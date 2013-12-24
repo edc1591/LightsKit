@@ -27,6 +27,11 @@
     return eventCollection;
 }
 
++ (instancetype)collectionWithEvents:(NSArray *)events {
+    LKEventCollection *eventCollection = [[LKEventCollection alloc] initWithEvents:events];
+    return eventCollection;
+}
+
 #pragma mark - Private methods
 
 - (instancetype)initWithEvents:(NSArray *)events {

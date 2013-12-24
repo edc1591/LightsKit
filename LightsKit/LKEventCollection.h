@@ -14,6 +14,7 @@
 @property (nonatomic, readonly) NSArray *events;
 
 + (instancetype)collectionWithDevices:(NSArray *)devices command:(LKX10Command)command;
++ (instancetype)collectionWithEvents:(NSArray *)events;
 
 - (NSString *)bodyString;
 - (NSDictionary *)dictionaryRepresentation;
