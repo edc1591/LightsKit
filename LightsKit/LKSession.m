@@ -123,9 +123,9 @@ static id _activeSession = nil;
 }
 
 - (void)addPreset:(LKPreset *)preset withCompletion:(void (^)())completion {
-    NSMutableDictionary *params = [[preset dictionaryRepresentation] mutableCopy];
-    params[@"auth_token"] = self.authToken;
-    [self.sessionManager POST:@"api/v1/schedule" parameters:params success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+    NSMutableDictionary *params = [@{@"auth_token": self.authToken} mutableCopy];
+    params[@"preset"] = [preset dictionaryRepresentation];
+    [self.sessionManager POST:@"api/v1/presets" parameters:params success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
         completion();
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%@", [error localizedDescription]);
@@ -161,7 +161,7 @@ static id _activeSession = nil;
         int i = 0;
         for (NSDictionary *presetDict in responseObject[@"presets"]) {
             LKPreset *preset = [LKPreset presetFromDictionary:presetDict atIndex:i];
-            [presets addObject:presetDict];
+            [presets addObject:preset];
             i++;
         }
         block([presets copy]);

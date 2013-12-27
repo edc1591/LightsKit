@@ -22,7 +22,6 @@ static NSString * const LKSpeedKey = @"speed";
 static NSString * const LKBrightnessKey = @"brightness";
 static NSString * const LKIndexKey = @"index";
 static NSString * const LKPresetsKey = @"presets";
-static NSString * const LKActionsKey = @"actions";
 static NSString * const LKEventsKey = @"events";
 
 typedef NS_ENUM(NSUInteger, LKEventType) {

@@ -30,7 +30,7 @@
     
     preset.name = dict[LKNameKey];
     preset.index = index;
-    for (NSDictionary *d in dict[LKActionsKey]) {
+    for (NSDictionary *d in dict[LKEventsKey]) {
         [preset.actions addObject:[LKEvent eventFromDictionary:d]];
     }
     
@@ -55,7 +55,7 @@
     for (LKEvent *event in self.actions) {
         [events addObject:[event dictionaryRepresentation]];
     }
-    mutDict[LKActionsKey] = events;
+    mutDict[LKEventsKey] = events;
     return [mutDict copy];
 }
 
