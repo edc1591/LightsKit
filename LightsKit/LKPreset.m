@@ -48,4 +48,15 @@
     return string;
 }
 
+- (NSDictionary *)dictionaryRepresentation {
+    NSMutableDictionary *mutDict = [NSMutableDictionary dictionary];
+    mutDict[LKNameKey] = self.name;
+    NSMutableArray *events = [NSMutableArray array];
+    for (LKEvent *event in self.actions) {
+        [events addObject:[event dictionaryRepresentation]];
+    }
+    mutDict[LKActionsKey] = events;
+    return [mutDict copy];
+}
+
 @end

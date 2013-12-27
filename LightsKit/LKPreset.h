@@ -15,5 +15,6 @@
 @property (nonatomic, readonly) NSUInteger index;
 
 + (instancetype)presetFromDictionary:(NSDictionary *)dict atIndex:(NSUInteger)index;
+- (NSDictionary *)dictionaryRepresentation;
 
 @end

@@ -25,6 +25,7 @@
 - (void)sendEventCollection:(LKEventCollection *)collection;
 - (void)scheduleEvent:(LKScheduledEvent *)event withCompletion:(void (^)())completion;
 - (void)updateEvent:(LKScheduledEvent *)event withCompletion:(void (^)())completion;
+- (void)addPreset:(LKPreset *)preset withCompletion:(void (^)())completion;
 - (void)executePreset:(LKPreset *)preset;
 
 - (void)queryStateWithBlock:(void (^)(LKEvent *state))block;

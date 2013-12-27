@@ -22,8 +22,8 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
     self.statusLabel.stringValue = @"Status: Connecting...";
-    self.session = [[LKSession alloc] initWithServer:[NSURL URLWithString:@"http://example.com"]];
-    [self.session openSessionWithUsername:@"" password:@"" completion:^{
+    self.session = [[LKSession alloc] initWithServer:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] objectForKey:@"LKMServerKey"]]];
+    [self.session openSessionWithUsername:[[NSUserDefaults standardUserDefaults] objectForKey:@"LKMUsernameKey"] password:[[NSUserDefaults standardUserDefaults] objectForKey:@"LKMPasswordKey"] completion:^(NSDictionary *userDict){
         self.statusLabel.stringValue = @"Status: Connected!";
     }];
 }

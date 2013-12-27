@@ -122,6 +122,16 @@ static id _activeSession = nil;
     }];
 }
 
+- (void)addPreset:(LKPreset *)preset withCompletion:(void (^)())completion {
+    NSMutableDictionary *params = [[preset dictionaryRepresentation] mutableCopy];
+    params[@"auth_token"] = self.authToken;
+    [self.sessionManager POST:@"api/v1/schedule" parameters:params success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+        completion();
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"%@", [error localizedDescription]);
+    }];
+}
+
 - (void)executePreset:(LKPreset *)preset {
     LKEventCollection *collection = [LKEventCollection collectionWithEvents:preset.actions];
     [self sendEventCollection:collection];
@@ -141,12 +151,23 @@ static id _activeSession = nil;
         }
         block([devices copy]);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
+        NSLog(@"%@", [error localizedDescription]);
     }];
 }
 
 - (void)queryPresetsWithBlock:(void (^)(NSArray *))block {
-    
+    [self.sessionManager GET:@"api/v1/presets" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+        NSMutableArray *presets = [NSMutableArray array];
+        int i = 0;
+        for (NSDictionary *presetDict in responseObject[@"presets"]) {
+            LKPreset *preset = [LKPreset presetFromDictionary:presetDict atIndex:i];
+            [presets addObject:presetDict];
+            i++;
+        }
+        block([presets copy]);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"%@", [error localizedDescription]);
+    }];
 }
 
 - (void)queryScheduleWithBlock:(void (^)(NSArray *))block {
@@ -169,7 +190,7 @@ static id _activeSession = nil;
         }
         block([devices copy]);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
+        NSLog(@"%@", [error localizedDescription]);
     }];
 }
 
@@ -177,7 +198,7 @@ static id _activeSession = nil;
     [self.sessionManager GET:@"api/v1/users/color_zones" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
         block(responseObject[@"color_zones"]);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
+        NSLog(@"%@", [error localizedDescription]);
     }];
 }
 
