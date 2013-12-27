@@ -8,3 +8,4 @@
 #import "LKEventCollection.h"
 #import "LKUserSession.h"
 #import "LKAnimation.h"
+#import "LKRoom.h"

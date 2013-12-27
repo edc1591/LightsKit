@@ -37,6 +37,8 @@
 		2095ABC317ACB4D00056976A /* LightsKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 2095ABC217ACB4D00056976A /* LightsKit.h */; };
 		2099898A18490E3D0007759D /* LKSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 2099898818490E3D0007759D /* LKSession.h */; };
 		2099898B18490E3D0007759D /* LKSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 2099898918490E3D0007759D /* LKSession.m */; };
+		20C27ACF186E132C002E6163 /* LKRoom.h in Headers */ = {isa = PBXBuildFile; fileRef = 20C27ACD186E132C002E6163 /* LKRoom.h */; };
+		20C27AD0186E132C002E6163 /* LKRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C27ACE186E132C002E6163 /* LKRoom.m */; };
 		20DBBA0E17ADDAB600D189BB /* LKPreset.h in Headers */ = {isa = PBXBuildFile; fileRef = 20DBBA0C17ADDAB600D189BB /* LKPreset.h */; };
 		20DBBA0F17ADDAB600D189BB /* LKPreset.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DBBA0D17ADDAB600D189BB /* LKPreset.m */; };
 		DBA84396D1F14649ACB01EED /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7EDDA276EB4EC9BD77296A /* libPods.a */; };
@@ -92,6 +94,8 @@
 		2095ABC217ACB4D00056976A /* LightsKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightsKit.h; sourceTree = "<group>"; };
 		2099898818490E3D0007759D /* LKSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKSession.h; sourceTree = "<group>"; };
 		2099898918490E3D0007759D /* LKSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKSession.m; sourceTree = "<group>"; };
+		20C27ACD186E132C002E6163 /* LKRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKRoom.h; sourceTree = "<group>"; };
+		20C27ACE186E132C002E6163 /* LKRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKRoom.m; sourceTree = "<group>"; };
 		20DBBA0C17ADDAB600D189BB /* LKPreset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKPreset.h; sourceTree = "<group>"; };
 		20DBBA0D17ADDAB600D189BB /* LKPreset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKPreset.m; sourceTree = "<group>"; };
 		81E48CFC152046919D577328 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
@@ -209,6 +213,8 @@
 				20DBBA0D17ADDAB600D189BB /* LKPreset.m */,
 				2070997D185AC35B004B9898 /* LKAnimation.h */,
 				2070997E185AC35B004B9898 /* LKAnimation.m */,
+				20C27ACD186E132C002E6163 /* LKRoom.h */,
+				20C27ACE186E132C002E6163 /* LKRoom.m */,
 				2095ABC217ACB4D00056976A /* LightsKit.h */,
 				2095ABAC17ACAF0D0056976A /* Supporting Files */,
 			);
@@ -243,6 +249,7 @@
 				20506C2B17AD8AE40039CC8A /* LKColor.h in Headers */,
 				20506C6417ADA4F10039CC8A /* LKResponse.h in Headers */,
 				20DBBA0E17ADDAB600D189BB /* LKPreset.h in Headers */,
+				20C27ACF186E132C002E6163 /* LKRoom.h in Headers */,
 				200FE6B417ADFD9700E66CC9 /* LKScheduledEvent.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -388,6 +395,7 @@
 				203578FC184A930900DAC1B8 /* LKUserSession.m in Sources */,
 				20506C2817AD88B60039CC8A /* LKEvent.m in Sources */,
 				20709980185AC35B004B9898 /* LKAnimation.m in Sources */,
+				20C27AD0186E132C002E6163 /* LKRoom.m in Sources */,
 				20506C2C17AD8AE40039CC8A /* LKColor.m in Sources */,
 				20506C6517ADA4F10039CC8A /* LKResponse.m in Sources */,
 				20DBBA0F17ADDAB600D189BB /* LKPreset.m in Sources */,

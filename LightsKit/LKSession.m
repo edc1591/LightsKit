@@ -16,6 +16,7 @@
 #import "LKX10Device.h"
 #import "LKAnimation.h"
 #import "LKScheduledEvent.h"
+#import "LKRoom.h"
 #import <AFNetworking/AFNetworking.h>
 
 static id _activeSession = nil;
@@ -197,6 +198,18 @@ static id _activeSession = nil;
 - (void)queryColorPermissionsWithBlock:(void (^)(NSArray *))block {
     [self.sessionManager GET:@"api/v1/users/color_zones" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
         block(responseObject[@"color_zones"]);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"%@", [error localizedDescription]);
+    }];
+}
+
+- (void)queryRoomsWithBlock:(void (^)(NSArray *))block {
+    [self.sessionManager GET:@"api/v1/rooms" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSArray *responseObject) {
+        NSMutableArray *rooms = [NSMutableArray array];
+        for (NSDictionary *roomDict in responseObject) {
+            [rooms addObject:[LKRoom roomWithDictionary:roomDict]];
+        }
+        block([rooms copy]);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%@", [error localizedDescription]);
     }];

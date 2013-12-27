@@ -34,5 +34,6 @@
 - (void)queryScheduleWithBlock:(void (^)(NSArray *events))block;
 - (void)queryAnimationsWithBlock:(void (^)(NSArray *animations))block;
 - (void)queryColorPermissionsWithBlock:(void (^)(NSArray *colorZones))block;
+- (void)queryRoomsWithBlock:(void (^)(NSArray *rooms))block;
 
 @end
