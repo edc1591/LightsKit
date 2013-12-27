@@ -8,6 +8,7 @@
 
 #import "LKEventCollection.h"
 #import "LKX10Device.h"
+#import "LKRoom.h"
 
 @interface LKEventCollection ()
 
@@ -25,6 +26,10 @@
     }
     LKEventCollection *eventCollection = [[LKEventCollection alloc] initWithEvents:[events copy]];
     return eventCollection;
+}
+
++ (instancetype)collectionWithRoom:(LKRoom *)room command:(LKX10Command)command {
+    return [LKEventCollection collectionWithDevices:room.devices command:command];
 }
 
 + (instancetype)collectionWithEvents:(NSArray *)events {

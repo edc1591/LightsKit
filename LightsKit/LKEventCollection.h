@@ -9,12 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "LKEvent.h"
 
+@class LKRoom;
+
 @interface LKEventCollection : NSObject
 
 @property (nonatomic, readonly) NSArray *events;
 
 + (instancetype)collectionWithDevices:(NSArray *)devices command:(LKX10Command)command;
 + (instancetype)collectionWithEvents:(NSArray *)events;
++ (instancetype)collectionWithRoom:(LKRoom *)room command:(LKX10Command)command;
 
 - (NSString *)bodyString;
 - (NSDictionary *)dictionaryRepresentation;
