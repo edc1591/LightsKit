@@ -145,10 +145,12 @@ static id _activeSession = nil;
 }
 
 - (void)queryX10DevicesWithBlock:(void (^)(NSArray *devices))block {
-    [self.sessionManager GET:@"api/v1/users/devices" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+    [self.sessionManager GET:@"api/v1/users/devices" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSArray *responseObject) {
         NSMutableArray *devices = [NSMutableArray array];
-        for (NSDictionary *deviceDict in responseObject[@"devices"]) {
-            [devices addObject:[LKX10Device deviceWithDictionary:deviceDict]];
+        for (NSDictionary *zoneDict in responseObject) {
+            for (NSDictionary *deviceDict in zoneDict[@"x10_devices"]) {
+                [devices addObject:[LKX10Device deviceWithDictionary:deviceDict]];
+            }
         }
         block([devices copy]);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
