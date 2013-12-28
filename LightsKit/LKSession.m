@@ -159,10 +159,10 @@ static id _activeSession = nil;
 }
 
 - (void)queryPresetsWithBlock:(void (^)(NSArray *))block {
-    [self.sessionManager GET:@"api/v1/presets" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+    [self.sessionManager GET:@"api/v1/presets" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSArray *responseObject) {
         NSMutableArray *presets = [NSMutableArray array];
         int i = 0;
-        for (NSDictionary *presetDict in responseObject[@"presets"]) {
+        for (NSDictionary *presetDict in responseObject) {
             LKPreset *preset = [LKPreset presetFromDictionary:presetDict atIndex:i];
             [presets addObject:preset];
             i++;
