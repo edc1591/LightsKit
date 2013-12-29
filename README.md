@@ -4,7 +4,7 @@ LightsKit is an Objective-C framework for interacting with a [lights-rails](http
 
 ## Links
 
-* Documentation: <http://edc.me/lights/documentation.html>
+* Documentation: <https://github.com/edc1591/lights-rails/wiki>
 * Lights-Rails app: <https://github.com/edc1591/lights-rails>
 * Lights bridge apps: <https://github.com/edc1591/lights-bridge>
 
