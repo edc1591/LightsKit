@@ -11,7 +11,7 @@
 
 @class LKRoom;
 
-@interface LKEventCollection : NSObject
+@interface LKEventCollection : NSObject <NSMutableCopying>
 
 @property (nonatomic, readonly) NSArray *events;
 

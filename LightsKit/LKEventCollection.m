@@ -9,6 +9,7 @@
 #import "LKEventCollection.h"
 #import "LKX10Device.h"
 #import "LKRoom.h"
+#import "LKMutableEventCollection.h"
 
 @interface LKEventCollection ()
 
@@ -68,6 +69,14 @@
     }
     eventDict[@"events"] = events;
     return eventDict;
+}
+
+#pragma mark - NSMutableCopying
+
+- (id)mutableCopyWithZone:(NSZone *)zone {
+    id copy = [[LKMutableEventCollection alloc] initWithEvents:[self.events mutableCopyWithZone:zone]];
+    
+    return copy;
 }
 
 @end
