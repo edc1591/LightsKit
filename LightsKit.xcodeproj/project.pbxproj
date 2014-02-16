@@ -28,6 +28,8 @@
 		20506C6517ADA4F10039CC8A /* LKResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 20506C6317ADA4F10039CC8A /* LKResponse.m */; };
 		2070997F185AC35B004B9898 /* LKAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2070997D185AC35B004B9898 /* LKAnimation.h */; };
 		20709980185AC35B004B9898 /* LKAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2070997E185AC35B004B9898 /* LKAnimation.m */; };
+		208E9D5D18B056A800585352 /* LKMutableEventCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 208E9D5B18B056A800585352 /* LKMutableEventCollection.h */; };
+		208E9D5E18B056A800585352 /* LKMutableEventCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 208E9D5C18B056A800585352 /* LKMutableEventCollection.m */; };
 		2095ABA617ACAF0D0056976A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2095ABA517ACAF0D0056976A /* Cocoa.framework */; };
 		2095ABB017ACAF0D0056976A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2095ABAE17ACAF0D0056976A /* InfoPlist.strings */; };
 		2095ABBC17ACAFB60056976A /* LKSocketSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 2095ABBA17ACAFB60056976A /* LKSocketSession.h */; };
@@ -79,6 +81,8 @@
 		20506C6317ADA4F10039CC8A /* LKResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKResponse.m; sourceTree = "<group>"; };
 		2070997D185AC35B004B9898 /* LKAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKAnimation.h; sourceTree = "<group>"; };
 		2070997E185AC35B004B9898 /* LKAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKAnimation.m; sourceTree = "<group>"; };
+		208E9D5B18B056A800585352 /* LKMutableEventCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKMutableEventCollection.h; sourceTree = "<group>"; };
+		208E9D5C18B056A800585352 /* LKMutableEventCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKMutableEventCollection.m; sourceTree = "<group>"; };
 		2095ABA217ACAF0D0056976A /* LightsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LightsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2095ABA517ACAF0D0056976A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		2095ABA817ACAF0D0056976A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -201,6 +205,8 @@
 				20506C2617AD88B60039CC8A /* LKEvent.m */,
 				203578F3184A715500DAC1B8 /* LKEventCollection.h */,
 				203578F4184A715500DAC1B8 /* LKEventCollection.m */,
+				208E9D5B18B056A800585352 /* LKMutableEventCollection.h */,
+				208E9D5C18B056A800585352 /* LKMutableEventCollection.m */,
 				200FE6B217ADFD9700E66CC9 /* LKScheduledEvent.h */,
 				200FE6B317ADFD9700E66CC9 /* LKScheduledEvent.m */,
 				20506C6217ADA4F10039CC8A /* LKResponse.h */,
@@ -239,6 +245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				203578F5184A715500DAC1B8 /* LKEventCollection.h in Headers */,
+				208E9D5D18B056A800585352 /* LKMutableEventCollection.h in Headers */,
 				2095ABBC17ACAFB60056976A /* LKSocketSession.h in Headers */,
 				2095ABC017ACB2580056976A /* LKX10Device.h in Headers */,
 				2095ABC317ACB4D00056976A /* LightsKit.h in Headers */,
@@ -390,6 +397,7 @@
 			files = (
 				2095ABBD17ACAFB60056976A /* LKSocketSession.m in Sources */,
 				2099898B18490E3D0007759D /* LKSession.m in Sources */,
+				208E9D5E18B056A800585352 /* LKMutableEventCollection.m in Sources */,
 				203578F6184A715500DAC1B8 /* LKEventCollection.m in Sources */,
 				2095ABC117ACB2580056976A /* LKX10Device.m in Sources */,
 				203578FC184A930900DAC1B8 /* LKUserSession.m in Sources */,

@@ -9,3 +9,4 @@
 #import "LKUserSession.h"
 #import "LKAnimation.h"
 #import "LKRoom.h"
+#import "LKMutableEventCollection.h"
