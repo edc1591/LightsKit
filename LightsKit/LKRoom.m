@@ -26,7 +26,7 @@ static NSString * const LKRoomHasColorsKey = @"has_colors";
 + (instancetype)roomWithDictionary:(NSDictionary *)dict {
     LKRoom *room = [[LKRoom alloc] init];
     room.name = dict[LKRoomNameKey];
-    room.hasColors = [dict[LKRoomHasColorsKey] boolValue];
+    room.hasColors = dict[LKRoomHasColorsKey] == [NSNull null] ? NO : [dict[LKRoomHasColorsKey] boolValue];
     
     NSMutableArray *devices = [NSMutableArray array];
     for (NSDictionary *deviceDict in dict[LKRoomDevicesKey]) {
