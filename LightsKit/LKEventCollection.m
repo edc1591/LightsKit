@@ -36,7 +36,7 @@
     if (room.hasColors) {
         LKEvent *event = nil;
         if (command == LKX10CommandOn) {
-            event = [LKEvent animationEventWithType:LKEventTypeAnimateRainbow speed:1.0 brightness:255.0];
+            event = [LKEvent animationEventWithType:LKEventTypeAnimateRainbow speed:200.0 brightness:255.0];
         } else if (command == LKX10CommandOff) {
             event = [LKEvent colorEventWithColor:[LKColor colorWithRGB:@[@0, @0, @0]]];
         }
