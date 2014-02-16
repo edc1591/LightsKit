@@ -9,6 +9,7 @@
 #import "LKEventCollection.h"
 #import "LKX10Device.h"
 #import "LKRoom.h"
+#import "LKColor.h"
 #import "LKMutableEventCollection.h"
 
 @interface LKEventCollection ()
@@ -30,7 +31,19 @@
 }
 
 + (instancetype)collectionWithRoom:(LKRoom *)room command:(LKX10Command)command {
-    return [LKEventCollection collectionWithDevices:room.devices command:command];
+    LKMutableEventCollection *collection = [[LKEventCollection collectionWithDevices:room.devices command:command] mutableCopy];
+    
+    if (room.hasColors) {
+        LKEvent *event = nil;
+        if (command == LKX10CommandOn) {
+            event = [LKEvent animationEventWithType:LKEventTypeAnimateRainbow speed:1.0 brightness:255.0];
+        } else if (command == LKX10CommandOff) {
+            event = [LKEvent colorEventWithColor:[LKColor colorWithRGB:@[@0, @0, @0]]];
+        }
+        [collection addEvent:event];
+    }
+    
+    return collection;
 }
 
 + (instancetype)collectionWithEvents:(NSArray *)events {
