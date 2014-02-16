@@ -11,11 +11,13 @@
 
 static NSString * const LKRoomNameKey = @"name";
 static NSString * const LKRoomDevicesKey = @"x10_devices";
+static NSString * const LKRoomHasColorsKey = @"has_colors";
 
 @interface LKRoom ()
 
 @property (nonatomic) NSString *name;
 @property (nonatomic) NSArray *devices;
+@property (nonatomic) BOOL hasColors;
 
 @end
 
@@ -24,6 +26,7 @@ static NSString * const LKRoomDevicesKey = @"x10_devices";
 + (instancetype)roomWithDictionary:(NSDictionary *)dict {
     LKRoom *room = [[LKRoom alloc] init];
     room.name = dict[LKRoomNameKey];
+    room.hasColors = [dict[LKRoomHasColorsKey] boolValue];
     
     NSMutableArray *devices = [NSMutableArray array];
     for (NSDictionary *deviceDict in dict[LKRoomDevicesKey]) {

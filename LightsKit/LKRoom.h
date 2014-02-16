@@ -12,6 +12,7 @@
 
 @property (nonatomic, readonly) NSString *name;
 @property (nonatomic, readonly) NSArray *devices;
+@property (nonatomic, readonly) BOOL hasColors;
 
 + (instancetype)roomWithDictionary:(NSDictionary *)dict;
 
