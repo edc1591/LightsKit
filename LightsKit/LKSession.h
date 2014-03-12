@@ -35,5 +35,6 @@
 - (void)queryAnimationsWithBlock:(void (^)(NSArray *animations))block;
 - (void)queryColorPermissionsWithBlock:(void (^)(NSArray *colorZones))block;
 - (void)queryRoomsWithBlock:(void (^)(NSArray *rooms))block;
+- (void)queryBeaconsWithBlock:(void (^)(NSArray *beacon))block;
 
 @end

@@ -26,6 +26,8 @@
 		20506C6117AD9F520039CC8A /* LightsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2095ABA217ACAF0D0056976A /* LightsKit.framework */; };
 		20506C6417ADA4F10039CC8A /* LKResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 20506C6217ADA4F10039CC8A /* LKResponse.h */; };
 		20506C6517ADA4F10039CC8A /* LKResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 20506C6317ADA4F10039CC8A /* LKResponse.m */; };
+		2070264B18D11226004DE165 /* LKBeacon.h in Headers */ = {isa = PBXBuildFile; fileRef = 2070264918D11226004DE165 /* LKBeacon.h */; };
+		2070264C18D11226004DE165 /* LKBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 2070264A18D11226004DE165 /* LKBeacon.m */; };
 		2070997F185AC35B004B9898 /* LKAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2070997D185AC35B004B9898 /* LKAnimation.h */; };
 		20709980185AC35B004B9898 /* LKAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2070997E185AC35B004B9898 /* LKAnimation.m */; };
 		208E9D5D18B056A800585352 /* LKMutableEventCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 208E9D5B18B056A800585352 /* LKMutableEventCollection.h */; };
@@ -79,6 +81,8 @@
 		20506C5717AD9E3F0039CC8A /* LKMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LKMAppDelegate.m; sourceTree = "<group>"; };
 		20506C6217ADA4F10039CC8A /* LKResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKResponse.h; sourceTree = "<group>"; };
 		20506C6317ADA4F10039CC8A /* LKResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKResponse.m; sourceTree = "<group>"; };
+		2070264918D11226004DE165 /* LKBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKBeacon.h; sourceTree = "<group>"; };
+		2070264A18D11226004DE165 /* LKBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKBeacon.m; sourceTree = "<group>"; };
 		2070997D185AC35B004B9898 /* LKAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKAnimation.h; sourceTree = "<group>"; };
 		2070997E185AC35B004B9898 /* LKAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKAnimation.m; sourceTree = "<group>"; };
 		208E9D5B18B056A800585352 /* LKMutableEventCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKMutableEventCollection.h; sourceTree = "<group>"; };
@@ -221,6 +225,8 @@
 				2070997E185AC35B004B9898 /* LKAnimation.m */,
 				20C27ACD186E132C002E6163 /* LKRoom.h */,
 				20C27ACE186E132C002E6163 /* LKRoom.m */,
+				2070264918D11226004DE165 /* LKBeacon.h */,
+				2070264A18D11226004DE165 /* LKBeacon.m */,
 				2095ABC217ACB4D00056976A /* LightsKit.h */,
 				2095ABAC17ACAF0D0056976A /* Supporting Files */,
 			);
@@ -246,6 +252,7 @@
 			files = (
 				203578F5184A715500DAC1B8 /* LKEventCollection.h in Headers */,
 				208E9D5D18B056A800585352 /* LKMutableEventCollection.h in Headers */,
+				2070264B18D11226004DE165 /* LKBeacon.h in Headers */,
 				2095ABBC17ACAFB60056976A /* LKSocketSession.h in Headers */,
 				2095ABC017ACB2580056976A /* LKX10Device.h in Headers */,
 				2095ABC317ACB4D00056976A /* LightsKit.h in Headers */,
@@ -403,6 +410,7 @@
 				203578FC184A930900DAC1B8 /* LKUserSession.m in Sources */,
 				20506C2817AD88B60039CC8A /* LKEvent.m in Sources */,
 				20709980185AC35B004B9898 /* LKAnimation.m in Sources */,
+				2070264C18D11226004DE165 /* LKBeacon.m in Sources */,
 				20C27AD0186E132C002E6163 /* LKRoom.m in Sources */,
 				20506C2C17AD8AE40039CC8A /* LKColor.m in Sources */,
 				20506C6517ADA4F10039CC8A /* LKResponse.m in Sources */,

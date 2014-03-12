@@ -17,6 +17,7 @@
 #import "LKAnimation.h"
 #import "LKScheduledEvent.h"
 #import "LKRoom.h"
+#import "LKBeacon.h"
 #import <AFNetworking/AFNetworking.h>
 
 static id _activeSession = nil;
@@ -212,6 +213,18 @@ static id _activeSession = nil;
             [rooms addObject:[LKRoom roomWithDictionary:roomDict]];
         }
         block([rooms copy]);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"%@", [error localizedDescription]);
+    }];
+}
+
+- (void)queryBeaconsWithBlock:(void (^)(NSArray *))block {
+    [self.sessionManager GET:@"api/v1/beacons" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSArray *responseObject) {
+        NSMutableArray *beacons = [NSMutableArray array];
+        for (NSDictionary *beaconDict in responseObject) {
+            [beacons addObject:[LKBeacon beaconWithDictionary:beaconDict]];
+        }
+        block([beacons copy]);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%@", [error localizedDescription]);
     }];
