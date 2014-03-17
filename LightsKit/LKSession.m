@@ -87,6 +87,18 @@ static id _activeSession = nil;
     [self.socketSession resumeSessionWithCompletion:completion];
 }
 
+- (void)registerDeviceToken:(NSString *)deviceToken completion:(void (^)())completion {
+    [self.sessionManager POST:@"api/v1/users/register_device_token"
+                   parameters:@{@"auth_token": self.authToken, @"device_token": deviceToken}
+                      success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+                          if (completion) {
+                              completion();
+                          }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"%@", [error localizedDescription]);
+    }];
+}
+
 - (void)sendEvent:(LKEvent *)event {
     [self.socketSession sendEvent:event];
 }

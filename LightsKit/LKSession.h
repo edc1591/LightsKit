@@ -20,6 +20,7 @@
 - (void)openSessionWithUsername:(NSString *)username password:(NSString *)password completion:(void (^)(NSDictionary *userDict))completion;
 - (void)suspendSession;
 - (void)resumeSessionWithCompletion:(void (^)())completion;
+- (void)registerDeviceToken:(NSString *)deviceToken completion:(void (^)())completion;
 
 - (void)sendEvent:(LKEvent *)event;
 - (void)sendEventCollection:(LKEventCollection *)collection;
