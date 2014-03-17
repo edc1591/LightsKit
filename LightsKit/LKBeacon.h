@@ -14,6 +14,7 @@
 @property (nonatomic, readonly) NSInteger beaconId;
 @property (nonatomic, readonly) NSInteger major;
 @property (nonatomic, readonly) NSInteger minor;
+@property (nonatomic, readonly) NSInteger roomId;
 
 + (instancetype)beaconWithDictionary:(NSDictionary *)dict;
 

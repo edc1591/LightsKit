@@ -12,6 +12,7 @@ static NSString * const LKBeaconNameKey = @"name";
 static NSString * const LKBeaconIdKey = @"id";
 static NSString * const LKBeaconMajorKey = @"major";
 static NSString * const LKBeaconMinorKey = @"minor";
+static NSString * const LKBeaconRoomIdKey = @"room_id";
 
 @interface LKBeacon ()
 
@@ -19,6 +20,7 @@ static NSString * const LKBeaconMinorKey = @"minor";
 @property (nonatomic) NSInteger beaconId;
 @property (nonatomic) NSInteger major;
 @property (nonatomic) NSInteger minor;
+@property (nonatomic) NSInteger roomId;
 
 @end
 
@@ -30,6 +32,7 @@ static NSString * const LKBeaconMinorKey = @"minor";
     beacon.beaconId = [dict[LKBeaconIdKey] integerValue];
     beacon.major = [dict[LKBeaconMajorKey] integerValue];
     beacon.minor = [dict[LKBeaconMinorKey] integerValue];
+    beacon.roomId = [dict[LKBeaconRoomIdKey] integerValue];
     return beacon;
 }
 
