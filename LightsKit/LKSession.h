@@ -7,15 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AFNetworking/AFHTTPSessionManager.h>
 
 @class LKEvent, LKScheduledEvent, LKResponse, LKPreset, LKEventCollection;
 
-@interface LKSession : NSObject
-
-@property (nonatomic, readonly) NSURL *serverURL;
+@interface LKSession : AFHTTPSessionManager
 
 + (instancetype)activeSession;
-- (instancetype)initWithServer:(NSURL *)url;
 
 - (void)openSessionWithUsername:(NSString *)username password:(NSString *)password completion:(void (^)(NSDictionary *userDict))completion;
 - (void)suspendSession;

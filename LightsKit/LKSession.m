@@ -18,13 +18,11 @@
 #import "LKScheduledEvent.h"
 #import "LKRoom.h"
 #import "LKBeacon.h"
-#import <AFNetworking/AFNetworking.h>
 
 static id _activeSession = nil;
 
 @interface LKSession ()
 
-@property (nonatomic) AFHTTPSessionManager *sessionManager;
 @property (nonatomic) LKSocketSession *socketSession;
 @property (nonatomic) NSString *authToken;
 
@@ -43,28 +41,21 @@ static id _activeSession = nil;
     return _activeSession;
 }
 
-- (instancetype)initWithServer:(NSURL *)url {
-    self = [super init];
+- (instancetype)initWithBaseURL:(NSURL *)url {
+    self = [super initWithBaseURL:url];
     if (self) {
-        _sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:url];
         _activeSession = self;
     }
     return self;
-}
-
-#pragma mark - Getters
-
-- (NSURL *)serverURL {
-    return self.sessionManager.baseURL;
 }
 
 #pragma mark - SocketRocket methods
 
 - (void)openSessionWithUsername:(NSString *)username password:(NSString *)password completion:(void (^)(NSDictionary *userDict))completion {
     NSDictionary *params = @{@"username": username, @"password": password};
-    [self.sessionManager POST:@"api/v1/sessions" parameters:params success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+    [self POST:@"api/v1/sessions" parameters:params success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
         self.authToken = responseObject[@"auth"][@"token"];
-        NSString *str = [self.serverURL absoluteString];
+        NSString *str = [self.baseURL absoluteString];
         NSInteger colon = [str rangeOfString:@":"].location;
         if (colon != NSNotFound) {
             str = [str substringFromIndex:colon];
@@ -88,7 +79,7 @@ static id _activeSession = nil;
 }
 
 - (void)registerDeviceToken:(NSString *)deviceToken completion:(void (^)())completion {
-    [self.sessionManager POST:@"api/v1/users/register_device_token"
+    [self POST:@"api/v1/users/register_device_token"
                    parameters:@{@"auth_token": self.authToken, @"device_token": deviceToken}
                       success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
                           if (completion) {
@@ -110,7 +101,7 @@ static id _activeSession = nil;
 - (void)scheduleEvent:(LKScheduledEvent *)event withCompletion:(void (^)())completion {
     NSMutableDictionary *params = [[event dictionaryRepresentation] mutableCopy];
     params[@"auth_token"] = self.authToken;
-    [self.sessionManager POST:@"api/v1/schedule" parameters:params success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+    [self POST:@"api/v1/schedule" parameters:params success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
         [self.socketSession notifyServerOfScheduleUpdateInZone:event.zone withCompletion:^{
             if (completion) {
                 completion();
@@ -125,7 +116,7 @@ static id _activeSession = nil;
     NSMutableDictionary *params = [@{@"auth_token": self.authToken} mutableCopy];
     params[@"schedule"] = [event dictionaryRepresentation];
     NSString *urlString = [NSString stringWithFormat:@"api/v1/schedule/%li", event.scheduleId];
-    [self.sessionManager POST:urlString parameters:params success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+    [self POST:urlString parameters:params success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
         [self.socketSession notifyServerOfScheduleUpdateInZone:event.zone withCompletion:^{
             if (completion) {
                 completion();
@@ -139,7 +130,7 @@ static id _activeSession = nil;
 - (void)addPreset:(LKPreset *)preset withCompletion:(void (^)())completion {
     NSMutableDictionary *params = [@{@"auth_token": self.authToken} mutableCopy];
     params[@"preset"] = [preset dictionaryRepresentation];
-    [self.sessionManager POST:@"api/v1/presets" parameters:params success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+    [self POST:@"api/v1/presets" parameters:params success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
         completion();
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%@", [error localizedDescription]);
@@ -158,7 +149,7 @@ static id _activeSession = nil;
 }
 
 - (void)queryX10DevicesWithBlock:(void (^)(NSArray *devices))block {
-    [self.sessionManager GET:@"api/v1/users/devices" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSArray *responseObject) {
+    [self GET:@"api/v1/users/devices" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSArray *responseObject) {
         NSMutableArray *devices = [NSMutableArray array];
         for (NSDictionary *zoneDict in responseObject) {
             for (NSDictionary *deviceDict in zoneDict[@"x10_devices"]) {
@@ -172,7 +163,7 @@ static id _activeSession = nil;
 }
 
 - (void)queryPresetsWithBlock:(void (^)(NSArray *))block {
-    [self.sessionManager GET:@"api/v1/presets" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSArray *responseObject) {
+    [self GET:@"api/v1/presets" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSArray *responseObject) {
         NSMutableArray *presets = [NSMutableArray array];
         int i = 0;
         for (NSDictionary *presetDict in responseObject) {
@@ -187,7 +178,7 @@ static id _activeSession = nil;
 }
 
 - (void)queryScheduleWithBlock:(void (^)(NSArray *))block {
-    [self.sessionManager GET:@"api/v1/schedule" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+    [self GET:@"api/v1/schedule" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
         NSMutableArray *events = [NSMutableArray array];
         for (NSDictionary *eventDict in responseObject[@"events"]) {
             [events addObject:[LKScheduledEvent eventFromDictionary:eventDict]];
@@ -199,7 +190,7 @@ static id _activeSession = nil;
 }
 
 - (void)queryAnimationsWithBlock:(void (^)(NSArray *))block {
-    [self.sessionManager GET:@"api/v1/colors/animations" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+    [self GET:@"api/v1/colors/animations" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
         NSMutableArray *devices = [NSMutableArray array];
         for (NSDictionary *dict in responseObject[@"animations"]) {
             [devices addObject:[LKAnimation animationWithDictionary:dict]];
@@ -211,7 +202,7 @@ static id _activeSession = nil;
 }
 
 - (void)queryColorPermissionsWithBlock:(void (^)(NSArray *))block {
-    [self.sessionManager GET:@"api/v1/users/color_zones" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+    [self GET:@"api/v1/users/color_zones" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
         block(responseObject[@"color_zones"]);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%@", [error localizedDescription]);
@@ -219,7 +210,7 @@ static id _activeSession = nil;
 }
 
 - (void)queryRoomsWithBlock:(void (^)(NSArray *))block {
-    [self.sessionManager GET:@"api/v1/rooms" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSArray *responseObject) {
+    [self GET:@"api/v1/rooms" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSArray *responseObject) {
         NSMutableArray *rooms = [NSMutableArray array];
         for (NSDictionary *roomDict in responseObject) {
             [rooms addObject:[LKRoom roomWithDictionary:roomDict]];
@@ -231,7 +222,7 @@ static id _activeSession = nil;
 }
 
 - (void)queryBeaconsWithBlock:(void (^)(NSArray *))block {
-    [self.sessionManager GET:@"api/v1/beacons" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSArray *responseObject) {
+    [self GET:@"api/v1/beacons" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSArray *responseObject) {
         NSMutableArray *beacons = [NSMutableArray array];
         for (NSDictionary *beaconDict in responseObject) {
             [beacons addObject:[LKBeacon beaconWithDictionary:beaconDict]];
