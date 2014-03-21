@@ -13,6 +13,8 @@
 
 @interface LKSession : AFHTTPSessionManager
 
+@property (nonatomic, readonly) NSString *authToken;
+
 + (instancetype)activeSession;
 
 - (void)openSessionWithUsername:(NSString *)username password:(NSString *)password completion:(void (^)(NSDictionary *userDict))completion;
