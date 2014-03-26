@@ -15,6 +15,8 @@
 @property (nonatomic, readonly) NSInteger major;
 @property (nonatomic, readonly) NSInteger minor;
 @property (nonatomic, readonly) NSInteger roomId;
+@property (nonatomic, readonly) CGFloat latitude;
+@property (nonatomic, readonly) CGFloat longitude;
 
 + (instancetype)beaconWithDictionary:(NSDictionary *)dict;
 

@@ -13,6 +13,8 @@ static NSString * const LKBeaconIdKey = @"id";
 static NSString * const LKBeaconMajorKey = @"major";
 static NSString * const LKBeaconMinorKey = @"minor";
 static NSString * const LKBeaconRoomIdKey = @"room_id";
+static NSString * const LKBeaconLatitudeKey = @"latitude";
+static NSString * const LKBeaconLongitudeKey = @"longitude";
 
 @interface LKBeacon ()
 
@@ -21,6 +23,8 @@ static NSString * const LKBeaconRoomIdKey = @"room_id";
 @property (nonatomic) NSInteger major;
 @property (nonatomic) NSInteger minor;
 @property (nonatomic) NSInteger roomId;
+@property (nonatomic) CGFloat latitude;
+@property (nonatomic) CGFloat longitude;
 
 @end
 
@@ -33,6 +37,8 @@ static NSString * const LKBeaconRoomIdKey = @"room_id";
     beacon.major = [dict[LKBeaconMajorKey] integerValue];
     beacon.minor = [dict[LKBeaconMinorKey] integerValue];
     beacon.roomId = [dict[LKBeaconRoomIdKey] integerValue];
+    beacon.latitude = [dict[LKBeaconLatitudeKey] doubleValue];
+    beacon.longitude = [dict[LKBeaconLongitudeKey] doubleValue];
     return beacon;
 }
 
