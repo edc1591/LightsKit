@@ -227,8 +227,10 @@ static id _activeSession = nil;
         completion(responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         completion(nil);
-        if ([self.delegate respondsToSelector:@selector(session:didFailWithError:)]) {
-            [self.delegate session:self didFailWithError:error];
+        if ([self.delegate respondsToSelector:@selector(session:didFailWithError:retryHandler:)]) {
+            [self.delegate session:self didFailWithError:error retryHandler:^{
+                [self getPath:path completion:completion];
+            }];
         }
     }];
 }

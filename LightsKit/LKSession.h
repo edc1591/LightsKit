@@ -13,7 +13,7 @@
 
 @protocol LKSessionDelegate <NSObject>
 
-- (void)session:(LKSession *)session didFailWithError:(NSError *)error;
+- (void)session:(LKSession *)session didFailWithError:(NSError *)error retryHandler:(void (^)())retryHandler;
 
 @end
 
