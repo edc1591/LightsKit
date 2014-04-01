@@ -228,7 +228,6 @@ static id _activeSession = nil;
     [self GET:path parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, id responseObject) {
         completion(responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        completion(nil);
         if ([self.delegate respondsToSelector:@selector(session:didFailWithError:retryHandler:)]) {
             [self.delegate session:self didFailWithError:error retryHandler:^{
                 [self getPath:path completion:completion];
