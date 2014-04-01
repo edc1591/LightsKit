@@ -227,7 +227,9 @@ static id _activeSession = nil;
         completion(responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         completion(nil);
-        NSLog(@"%@", [error localizedDescription]);
+        if ([self.delegate respondsToSelector:@selector(session:didFailWithError:)]) {
+            [self.delegate session:self didFailWithError:error];
+        }
     }];
 }
 

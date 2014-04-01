@@ -9,11 +9,18 @@
 #import <Foundation/Foundation.h>
 #import <AFNetworking/AFHTTPSessionManager.h>
 
-@class LKEvent, LKScheduledEvent, LKResponse, LKPreset, LKEventCollection;
+@class LKEvent, LKScheduledEvent, LKResponse, LKPreset, LKEventCollection, LKSession;
+
+@protocol LKSessionDelegate <NSObject>
+
+- (void)session:(LKSession *)session didFailWithError:(NSError *)error;
+
+@end
 
 @interface LKSession : AFHTTPSessionManager
 
 @property (nonatomic, readonly) NSString *authToken;
+@property (nonatomic, weak) id<LKSessionDelegate> delegate;
 
 + (instancetype)activeSession;
 
