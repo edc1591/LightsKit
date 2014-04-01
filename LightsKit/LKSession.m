@@ -222,7 +222,9 @@ static id _activeSession = nil;
 #pragma mark - Private methods
 
 - (void)getPath:(NSString *)path completion:(void (^)(id))completion {
-    path = [@"api/v1" stringByAppendingPathComponent:path];
+    if ([path rangeOfString:@"api/v1"].location == NSNotFound) {
+        path = [@"api/v1" stringByAppendingPathComponent:path];
+    }
     [self GET:path parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, id responseObject) {
         completion(responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
