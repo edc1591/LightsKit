@@ -149,7 +149,7 @@ static id _activeSession = nil;
 }
 
 - (void)queryX10DevicesWithBlock:(void (^)(NSArray *devices))block {
-    [self GET:@"api/v1/users/devices" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSArray *responseObject) {
+    [self getPath:@"users/devices" completion:^(NSArray *responseObject) {
         NSMutableArray *devices = [NSMutableArray array];
         for (NSDictionary *zoneDict in responseObject) {
             for (NSDictionary *deviceDict in zoneDict[@"x10_devices"]) {
@@ -157,13 +157,11 @@ static id _activeSession = nil;
             }
         }
         block([devices copy]);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"%@", [error localizedDescription]);
     }];
 }
 
 - (void)queryPresetsWithBlock:(void (^)(NSArray *))block {
-    [self GET:@"api/v1/presets" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSArray *responseObject) {
+    [self getPath:@"presets" completion:^(NSArray *responseObject) {
         NSMutableArray *presets = [NSMutableArray array];
         int i = 0;
         for (NSDictionary *presetDict in responseObject) {
@@ -172,62 +170,61 @@ static id _activeSession = nil;
             i++;
         }
         block([presets copy]);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"%@", [error localizedDescription]);
     }];
 }
 
 - (void)queryScheduleWithBlock:(void (^)(NSArray *))block {
-    [self GET:@"api/v1/schedule" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+    [self getPath:@"beacons" completion:^(NSDictionary *responseObject) {
         NSMutableArray *events = [NSMutableArray array];
         for (NSDictionary *eventDict in responseObject[@"events"]) {
             [events addObject:[LKScheduledEvent eventFromDictionary:eventDict]];
         }
         block([events copy]);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"%@", [error localizedDescription]);
     }];
 }
 
 - (void)queryAnimationsWithBlock:(void (^)(NSArray *))block {
-    [self GET:@"api/v1/colors/animations" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+    [self getPath:@"colors/animations" completion:^(NSDictionary *responseObject) {
         NSMutableArray *devices = [NSMutableArray array];
         for (NSDictionary *dict in responseObject[@"animations"]) {
             [devices addObject:[LKAnimation animationWithDictionary:dict]];
         }
         block([devices copy]);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"%@", [error localizedDescription]);
     }];
 }
 
 - (void)queryColorPermissionsWithBlock:(void (^)(NSArray *))block {
-    [self GET:@"api/v1/users/color_zones" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+    [self getPath:@"users/color_zones" completion:^(NSDictionary *responseObject) {
         block(responseObject[@"color_zones"]);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"%@", [error localizedDescription]);
     }];
 }
 
 - (void)queryRoomsWithBlock:(void (^)(NSArray *))block {
-    [self GET:@"api/v1/rooms" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSArray *responseObject) {
+    [self getPath:@"rooms" completion:^(NSArray *responseObject) {
         NSMutableArray *rooms = [NSMutableArray array];
         for (NSDictionary *roomDict in responseObject) {
             [rooms addObject:[LKRoom roomWithDictionary:roomDict]];
         }
         block([rooms copy]);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"%@", [error localizedDescription]);
     }];
 }
 
 - (void)queryBeaconsWithBlock:(void (^)(NSArray *))block {
-    [self GET:@"api/v1/beacons" parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, NSArray *responseObject) {
+    [self getPath:@"beacons" completion:^(NSArray *responseObject) {
         NSMutableArray *beacons = [NSMutableArray array];
         for (NSDictionary *beaconDict in responseObject) {
             [beacons addObject:[LKBeacon beaconWithDictionary:beaconDict]];
         }
         block([beacons copy]);
+    }];
+}
+
+#pragma mark - Private methods
+
+- (void)getPath:(NSString *)path completion:(void (^)(id))completion {
+    path = [@"api/v1" stringByAppendingPathComponent:path];
+    [self GET:path parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, id responseObject) {
+        completion(responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%@", [error localizedDescription]);
     }];
