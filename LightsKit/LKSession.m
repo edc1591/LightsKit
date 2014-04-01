@@ -226,6 +226,7 @@ static id _activeSession = nil;
     [self GET:path parameters:@{@"auth_token": self.authToken} success:^(NSURLSessionDataTask *task, id responseObject) {
         completion(responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        completion(nil);
         NSLog(@"%@", [error localizedDescription]);
     }];
 }
