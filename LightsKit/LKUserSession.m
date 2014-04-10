@@ -25,13 +25,13 @@
     return self;
 }
 
-- (void)usernameHasPassword:(NSString *)username completion:(void (^)(BOOL hasPassword))completion {
+- (void)usernameHasPassword:(NSString *)username completion:(void (^)(BOOL hasPassword, NSError *error))completion {
     NSDictionary *params = @{@"username": username};
     [self.sessionManager GET:@"api/v1/users/has_password" parameters:params success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
         BOOL hasPassword = [responseObject[@"has_password"] boolValue];
-        completion(hasPassword);
+        completion(hasPassword, nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"%@", [error localizedDescription]);
+        completion(NO, error);
     }];
 }
 

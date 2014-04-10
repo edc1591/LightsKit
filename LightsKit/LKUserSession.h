@@ -12,7 +12,7 @@
 
 - (instancetype)initWithServer:(NSURL *)url;
 
-- (void)usernameHasPassword:(NSString *)username completion:(void(^)(BOOL hasPassword))completion;
+- (void)usernameHasPassword:(NSString *)username completion:(void(^)(BOOL hasPassword, NSError *error))completion;
 - (void)setPassword:(NSString *)password forUsername:(NSString *)username completion:(void (^)())completion;
 
 @end
